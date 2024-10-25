@@ -1,0 +1,44 @@
+<app-header (toggleSidebar)="toggleSidebar()" (toggleDarkMode)="toggleDarkMode($event)"></app-header>
+
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar" [ngClass]="{'active': isSidebarCollapsed}">
+    <ul class="list-unstyled components">
+      <li>
+        <a routerLink="/dashboard">
+          <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="/profile">
+          <i class="fas fa-user-circle"></i> Profile
+        </a>
+      </li>
+      <li>
+        <a routerLink="/wallet">
+          <i class="fas fa-wallet"></i> Wallet
+        </a>
+      </li>
+      <li>
+        <a routerLink="/transaction">
+          <i class="fas fa-exchange-alt"></i> Transactions
+        </a>
+      </li>
+      <li>
+        <a routerLink="/setting">
+          <i class="fas fa-cogs"></i> Settings
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

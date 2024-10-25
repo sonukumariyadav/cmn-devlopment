@@ -1,0 +1,80 @@
+
+
+<!-- src/app/transaction/transaction.component.html -->
+
+<div class="wrapper">
+    <!-- Page Content -->
+    <div id="content">
+      <div class="container">
+        <h2>Transaction History</h2>
+  
+        <!-- Loading and Error Messages -->
+        <div *ngIf="loading">Loading transactions...</div>
+        <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+        <!-- Credited and Debited Summary -->
+        <!-- <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="card text-center bg-success text-white">
+              <div class="card-body">
+                <h5 class="card-title">Total Credited</h5>
+                <p class="card-text">{{ totalCredited  }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card text-center bg-danger text-white">
+              <div class="card-body">
+                <h5 class="card-title">Total Debited</h5>
+                <p class="card-text">{{ totalDebited  }}</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+  
+        <!-- Transactions Table -->
+        <table *ngIf="!loading && transactions.length > 0" class="table-data mt-4">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>Transaction Type</th>
+              <!-- <th>Amount</th> -->
+              <th>Credited Amount</th>
+              <th>Debited Amount</th>
+              <th>Current Balance</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of transactions; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ transaction.transactionType }}</td>
+              <!-- <td>{{ transaction.amount | currency:'INR' }}</td> -->
+  
+              <!-- Conditional Credited and Debited Columns -->
+              <td >
+                <span *ngIf="transaction.amount > 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+              </td>
+              <td >
+                <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+              </td>
+  
+              <td>{{ transaction.currentBalance }}</td>
+              <td>{{ transaction.description }}</td>
+              <td>{{ transaction.status }}</td>
+              <td>{{ transaction.createdAt | date:'medium' }}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <div *ngIf="!loading && transactions.length === 0">No transactions available.</div>
+
+        <!-- Paginator -->
+        <mat-paginator class="pagination" [length]="totalTransactions" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  

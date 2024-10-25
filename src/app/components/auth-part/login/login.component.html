@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row align-items-center justify-content-between">
+        <div class="col-12 col-md-6 mb-3 mb-md-0 text-center text-md-start">
+            <img src="assets/logo.jpg" alt="logo" class="img-fluid" width="100">
+        </div>
+        <div class="col-12 col-md-3 text-center text-md-end">
+            <div class="float-md-end d-inline-block">
+                <span *ngIf="!isDarkMode" class="me-2">
+                    <i class="fa-solid fa-sun fs-1" (click)="toggleDarkMode(true)"></i>
+                </span>
+                <span *ngIf="isDarkMode">
+                    <i class="fa-regular fa-sun fs-1" (click)="toggleDarkMode(false)"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+            <div class="card p-3" [ngClass]="{'dark-mode-card': isDarkMode}">
+                <div class="yellow-border-top-left" *ngIf="isDarkMode"></div>
+                <div class="yellow-border-bottom-right" *ngIf="isDarkMode"></div>
+
+                <h2 class="text-center mb-4">Login</h2>
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <!-- Mobile Input with Icon -->
+                    <div class="form-group mb-3">
+                        <label for="mobile">Mobile</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-mobile-alt"></i>
+                            </span>
+                            <input type="text" class="form-control" id="mobile" formControlName="mobile" placeholder="Enter your mobile number">
+                        </div>
+                    </div>
+
+                    <!-- Password Input with Icon and Toggle -->
+                    <div class="form-group mb-3">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+                            <span class="input-group-text" (click)="togglePasswordVisibility()">
+                                <i class="fa" [ngClass]="isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Stay Logged In Checkbox -->
+                    <div class="form-group mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="stayLoggedIn">
+                            <label class="form-check-label" for="stayLoggedIn">Stay Logged In</label>
+                        </div>
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="form-group mb-3 text-center">
+                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                    </div>
+
+                    <!-- Sign-up Link -->
+                    <div class="form-group mb-3 text-center">
+                        <p>Don't have an account? <a routerLink="/signup" class="text-primary">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
