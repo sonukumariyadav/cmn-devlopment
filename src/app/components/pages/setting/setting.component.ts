@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import FormBuilder, FormGroup, and Validators
-import { WalletServiceService } from '../../../services/wallet/wallet-service.service'; // Import the service
+import { SettingServicesService } from '../../../services/setting/setting-services.service'; // Import the service
 
 @Component({
   selector: 'app-setting',
@@ -10,79 +10,104 @@ import { WalletServiceService } from '../../../services/wallet/wallet-service.se
 export class SettingComponent { 
 
  // Declare form groups
- stakeForm: FormGroup;
- withdrawForm: FormGroup;
- depositForm: FormGroup;
+ updateWalletAddressForm: FormGroup;
+ createTransactionPasswordForm: FormGroup;
+ changeTransactionPasswordForm: FormGroup;
+ convertWalletForm:FormGroup
  token: any;
 
  constructor(
-   private walletService: WalletServiceService,
+   private settingServicesService: SettingServicesService,
    private fb: FormBuilder // Inject FormBuilder
  ) {
-   // Initialize the form groups in the constructor
-   this.stakeForm = this.fb.group({
-     amount: [0, [Validators.required, Validators.min(1)]],
-   });
-   // Initialize the form groups in the constructor
-   this.depositForm = this.fb.group({
-     amount: [0, [Validators.required, Validators.min(1)]],
-   });
+  this.createTransactionPasswordForm = this.fb.group({
+    password: ['', Validators.required],
+    cnfPassword: ['', Validators.required]
+  });
 
-   this.withdrawForm = this.fb.group({
-     amount: [0, [Validators.required, Validators.min(1)]],
-     password: ['', [Validators.required]],
-   });
+  this.changeTransactionPasswordForm = this.fb.group({
+    prevPassword: ['', Validators.required],
+    newPassword: ['', Validators.required],
+    cnfPassword: ['', Validators.required]
+  });
+
+  this.updateWalletAddressForm = this.fb.group({
+    address: ['', Validators.required]
+  });
+
+  this.convertWalletForm = this.fb.group({
+    amount: [0, [Validators.required, Validators.min(1)]]
+  });
  }
 
  ngOnInit(): void {
    this.token = localStorage.getItem('authToken');
  }
 
- stake() {
-   if (this.stakeForm.valid) {
-     const stakeAmount = this.stakeForm.value; // Get the value from the form
-     this.walletService.stake(stakeAmount, this.token).subscribe({
+ 
+
+ createTransactionPassword() {
+   if (this.createTransactionPasswordForm.valid) {
+     const createTransactionPassword = this.createTransactionPasswordForm.value; // Get the value from the form
+     // const withdrawPassword = this.withdrawForm.value.withdrawPassword; // Get the password from the form
+
+     this.settingServicesService.createTransactionPasswordData(createTransactionPassword, this.token).subscribe({
        next: (response) => {
-         console.log('Staked successfully:', response);
+         console.log('createTransactionPassword successfully:', response);
          // Handle success notification here
        },
        error: (err) => {
-         console.error('Staking error:', err);
+         console.error('createTransactionPassword error:', err);
+         // Handle error notification here
+       }
+     });
+   }
+ }
+ changeTransactionPassword() {
+   if (this.changeTransactionPasswordForm.valid) {
+     const changeTransactionPassword = this.changeTransactionPasswordForm.value; // Get the value from the form
+     // const withdrawPassword = this.withdrawForm.value.withdrawPassword; // Get the password from the form
+
+     this.settingServicesService.changeTransactionPasswordData(changeTransactionPassword, this.token).subscribe({
+       next: (response) => {
+         console.log('changeTransactionPassword successfully:', response);
+         // Handle success notification here
+       },
+       error: (err) => {
+         console.error('changeTransactionPassword error:', err);
          // Handle error notification here
        }
      });
    }
  }
 
- withdraw() {
-   if (this.withdrawForm.valid) {
-     const withdrawAmount = this.withdrawForm.value; // Get the value from the form
+ updateWalletAddress() {
+  if (this.updateWalletAddressForm.valid) {
+    const updateWalletAddress = this.updateWalletAddressForm.value; // Get the value from the form
+    this.settingServicesService.updateWalletAddressData(updateWalletAddress, this.token).subscribe({
+      next: (response) => {
+        console.log('updateWalletAddress successfully:', response);
+        // Handle success notification here
+      },
+      error: (err) => {
+        console.error('updateWalletAddress error:', err);
+        // Handle error notification here
+      }
+    });
+  }
+}
+ convertWallet() {
+   if (this.convertWalletForm.valid) {
+     const convertWallet = this.convertWalletForm.value; // Get the value from the form
      // const withdrawPassword = this.withdrawForm.value.withdrawPassword; // Get the password from the form
 
-     this.walletService.withdraw(withdrawAmount, this.token).subscribe({
+     this.settingServicesService.convertWalletFormData(convertWallet, this.token).subscribe({
        next: (response) => {
-         console.log('Withdrawn successfully:', response);
+         console.log('convertWallet successfully:', response);
          // Handle success notification here
        },
        error: (err) => {
-         console.error('Withdrawal error:', err);
-         // Handle error notification here
-       }
-     });
-   }
- }
- deposit() {
-   if (this.depositForm.valid) {
-     const depositFormAmount = this.depositForm.value; // Get the value from the form
-     // const withdrawPassword = this.withdrawForm.value.withdrawPassword; // Get the password from the form
-
-     this.walletService.deposit(depositFormAmount, this.token).subscribe({
-       next: (response) => {
-         console.log('Withdrawn successfully:', response);
-         // Handle success notification here
-       },
-       error: (err) => {
-         console.error('Withdrawal error:', err);
+         console.error('convertWallet error:', err);
          // Handle error notification here
        }
      });
