@@ -32,7 +32,7 @@ const routes: Routes = [
       // Add other protected routes here
     ]
   },
-  { path: '**', redirectTo: 'login' } // Redirect unknown routes to login
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
