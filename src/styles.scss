@@ -14,7 +14,7 @@
   /* Default header color in light mode */
   --header-bg-color-light: transparent;
   /* No background color in light mode */
-  --header-color-dark: yellow;
+  --header-color-dark: rgb(150, 214, 241);
   /* Yellow header color in dark mode */
   --header-bg-color-dark: transparent;
   /* Transparent header background in dark mode */
@@ -110,14 +110,13 @@ input button:hover {
 
 /* Header styling */
 .navbar {
-  background-color: var(--card-bg-color);
-  /* Background color based on dark/light mode */
-  color: var(--header-color-light);
-  /* Header text color in dark mode */
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-  border-bottom: 2px solid var(--border-color-dark);
+  // background-color: var(--card-bg-color); /* Background color based on dark/light mode */
+    background-color: lightgrey !important;
+    color: var(--header-color-light); /* Header text color in dark mode */
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 2px solid yellow !important;
 }
 
 .list-unstyled li a {
@@ -195,23 +194,28 @@ input button:hover {
 
 /* Style for cards */
 .card {
-  background-color: var(--card-bg-color) !important;
-  background-image: var(--card-gradient-light);
-  /* Default no gradient in light mode */
+  background-color: lightgrey !important;
+  // background-image: var(--card-gradient-light); /* Default no gradient in light mode */
   position: relative;
   transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
   border-bottom-right-radius: 3rem;
   border-top-left-radius: 3rem;
   border: none;
-  padding: 20px;
-  /* Add padding to cards */
+  padding: 20px; /* Add padding to cards */
 }
 
 
 /* Dark mode card gradient shine effect */
 .dark-mode .card {
-  background-image: var(--card-gradient-dark);
-  /* Dark blue shining gradient in dark mode */
+background-color: var(--card-bg-color) !important;
+  // background-image: var(--card-gradient-dark); /* Dark blue shining gradient in dark mode */
+}
+.dark-mode .navbar {
+background-color: var(--card-bg-color) !important;
+}
+.dark-mode #sidebar {
+background-color: var(--card-bg-color) !important;
+border-bottom:2px solid var( --border-color-dark) ;
 }
 
 /* Styles for login and signup forms */
@@ -345,17 +349,24 @@ input[type="password"]:focus {
 }
 
 /* Sidebar styling */
+// #sidebar {
+//   margin-top: 6.2rem;
+//   background: var(--card-bg-color);
+//   color: var(--text-color);
+
+//   height: 100vh;
+// }
+
 #sidebar {
-  width: 20rem;
+  position: fixed;
+  width: 15rem;
   margin-top: 6.2rem;
-  background: var(--card-bg-color);
+  background-color: lightgrey !important;
+  // background: var(--card-bg-color);
   color: var(--text-color);
   transition: all 0.3s;
-  position: fixed;
-  /* Fix sidebar */
   height: 100vh;
   z-index: 1;
-
 }
 
 #sidebar.active {
@@ -405,19 +416,15 @@ input[type="password"]:focus {
 }
 
 /* Page content styling */
+/* Page content styling */
 #content {
-  margin-top: 3rem;
-  margin-left: 10rem;
-  flex-grow: 1;
-  overflow-y: auto;
-  height: auto;
+  margin-left: 8rem; /* Offset content for sidebar width */
+  margin-top: 4rem; /* Offset content for sidebar width */
+  flex-grow: 1; /* Allow content to grow */
+  overflow-y: auto; /* Enable vertical scrolling for content */
+  height:100vh; /* Full height */
   overflow: hidden;
-  width: 100%;
-  padding: 20px;
-  background: var(--background-color);
-  transition: all 0.3s;
 }
-
 #sidebarCollapse {
   margin-bottom: 20px;
 }
@@ -519,18 +526,19 @@ body {
 }
 
 /* Optional: Customize toast appearance */
-.toast-success {
-  background-color: #28a745;
-  /* Success color */
-  color: white;
-  /* Text color */
-}
+// .toast-success {
+//   background-color: #28a745;
+//   /* Success color */
+//   color: white;
+//   /* Text color */
+// }
 
 .toast-error {
   background-color: #82020f;
-  /* Error color */
-  color: white;
-  /* Text color */
+  color: #fff !important;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px 20px;
 }
 
 /* Ensure the position remains fixed to top right */
@@ -543,8 +551,65 @@ body {
 
 /* Progress bar styles */
 .toast-progress {
-  height: 4px;
-  /* Height of the progress bar */
-  background-color: #007bff;
-  /* Color of the progress bar */
+  background-color: #fff !important;  /* Customize as needed */
+  height: 4px !important;  /* Adjust height if it's too small */
+}
+
+.toast-bottom-center {
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-width: 90%; /* Ensures it doesn’t exceed screen width */
+}
+
+/* Optional: Customize the look of the toastr */
+.toast-success {
+  background-color: #28a745 !important; /* Subtle green for success */
+  color: #fff !important;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.toast-close-button {
+  color: #fff !important;
+}
+/* Common styles for toastr notifications */
+.toast-custom {
+  display: flex;
+  align-items: center;
+  color: white !important;
+}
+
+/* Success Notification */
+.toast-custom.toast-success {
+  background-color: #28a745 !important;
+}
+.toast-custom.toast-success:before {
+  content: '\f058'; /* Check-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+/* Error Notification */
+.toast-custom.toast-error {
+  background-color: #dc3545 !important;
+}
+.toast-custom.toast-error:before {
+  content: '\f057'; /* Times-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+/* Info Notification */
+.toast-custom.toast-info {
+  background-color: #17a2b8 !important;
+}
+.toast-custom.toast-info:before {
+  content: '\f05a'; /* Info-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
 }

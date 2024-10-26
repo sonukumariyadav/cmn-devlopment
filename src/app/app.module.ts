@@ -26,12 +26,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-right', // Global position setting
       timeOut: 3000,
+      positionClass: 'toast-bottom-center',
       preventDuplicates: true,
-      progressBar: true, // Show progress bar
-      closeButton: true // Show close button
-    }), // ToastrModule added\
+      progressBar: true,  // Enable progress bar globally
+    }),     
     TransactionModule, BrowserAnimationsModule
   ],
   providers: [],
