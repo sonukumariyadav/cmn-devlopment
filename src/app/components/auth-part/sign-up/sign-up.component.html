@@ -4,7 +4,7 @@
             <img src="assets/logo.jpg" alt="logo" class="img-fluid" width="100">
         </div>
         <div class="col-12 col-md-3 text-center text-md-end">
-            <div class="float-md-end d-inline-block">
+            <div class="d-inline-block">
                 <span *ngIf="!isDarkMode" class="me-2">
                     <i class="fa-solid fa-sun fs-1" (click)="toggleDarkMode(true)"></i>
                 </span>
@@ -15,10 +15,11 @@
         </div>
     </div>
 
+
+    
     <div class="row justify-content-center mt-4">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
             <div class="card p-3" [ngClass]="{'dark-mode-card': isDarkMode}">
-                <!-- Yellow Borders in Dark Mode -->
                 <div class="yellow-border-top-left" *ngIf="isDarkMode"></div>
                 <div class="yellow-border-bottom-right" *ngIf="isDarkMode"></div>
 
@@ -53,8 +54,6 @@
                             <div *ngIf="signUpForm.get('email').errors?.['email']">Enter a valid email.</div>
                         </div>
                     </div>
-
-
 
                     <!-- Mobile Input -->
                     <div class="form-group mb-3">
@@ -145,18 +144,18 @@
                         <button type="submit" class="btn btn-primary w-100" [disabled]="signUpForm.invalid">Sign
                             Up</button>
                     </div>
+
                     <!-- OTP Verification Section -->
-                    <div *ngIf="isOtpSent">
+                    <div *ngIf="isOtpSent" class="mt-4">
                         <h3>Verify OTP</h3>
                         <form [formGroup]="otpForm" (ngSubmit)="verifyOtp()">
                             <div class="form-group mb-3">
                                 <label for="otp">Enter OTP:</label>
-                                <input class="form-control"  id="otp" formControlName="otp" required>
+                                <input class="form-control" id="otp" formControlName="otp" required>
                             </div>
-                           <div class="form-group mb-3 text-center">
-                            <button class="btn btn-primary w-100" type="submit">Verify OTP</button>
-                           </div>
-                            
+                            <div class="form-group mb-3 text-center">
+                                <button class="btn btn-primary w-100" type="submit">Verify OTP</button>
+                            </div>
                         </form>
                     </div>
 
