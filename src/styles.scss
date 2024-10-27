@@ -5,19 +5,12 @@
   --button-bg-color: #fff;
   --button-text-color: #000;
   --card-bg-color: #fff;
-  /* Default card background */
   --border-color-light: transparent;
-  /* No border in light mode */
   --card-gradient-light: none;
-  /* No gradient in light mode */
   --header-color-light: black;
-  /* Default header color in light mode */
   --header-bg-color-light: transparent;
-  /* No background color in light mode */
-  --header-color-dark: yellow;
-  /* Yellow header color in dark mode */
+  --header-color-dark: rgb(150, 214, 241);
   --header-bg-color-dark: transparent;
-  /* Transparent header background in dark mode */
 }
 
 /* Dark mode theme */
@@ -27,15 +20,10 @@
   --button-bg-color: #333;
   --button-text-color: #fff;
   --card-bg-color: #03095e;
-  /* Light blue background for the card in dark mode */
   --border-color-dark: rgb(185, 137, 5);
-  /* Yellow borders in dark mode */
   --card-gradient-dark: radial-gradient(circle at top left, rgba(7, 29, 226, 0.8), transparent 50%);
-  /* Dark blue gradient effect */
   --header-color-light: white;
-  /* Yellow header text in dark mode */
   --header-bg-color-light: transparent;
-  /* Transparent background */
 }
 
 /* Applying the variables globally */
@@ -43,11 +31,9 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: Arial, sans-serif;
-  /* Set a default font */
   margin: 0;
   padding: 0;
 }
-
 
 .card-title {
   color: var(--border-color-dark);
@@ -70,27 +56,16 @@ h6 {
   color: var(--text-color);
 }
 
-.pagination {
-  background-color: var(--card-bg-color) !important;
-  color: var(--text-color) !important;
-}
-
-.mat-mdc-select-value-text {
-  background-color: var(--card-bg-color) !important;
-  color: var(--text-color) !important;
-}
-
-.mat-mdc-select-arrow-wrapper {
-  color: var(--text-color) !important;
-}
-
+.pagination,
+.mat-mdc-select-value-text,
+.mat-mdc-select-arrow-wrapper,
 .mat-mdc-select-arrow {
+  background-color: var(--card-bg-color) !important;
   color: var(--text-color) !important;
 }
 
 .mdc-notched-outline {
   border: 1px solid var(--text-color) !important;
-
 }
 
 button {
@@ -105,19 +80,16 @@ button {
 
 input button:hover {
   background-color: var(--button-text-color);
-  /* Change button background on hover */
 }
 
 /* Header styling */
 .navbar {
-  background-color: var(--card-bg-color);
-  /* Background color based on dark/light mode */
+  background-color: lightgrey !important;
   color: var(--header-color-light);
-  /* Header text color in dark mode */
   position: fixed;
   width: 100%;
   z-index: 1;
-  border-bottom: 2px solid var(--border-color-dark);
+  border-bottom: 2px solid yellow !important;
 }
 
 .list-unstyled li a {
@@ -126,124 +98,94 @@ input button:hover {
 
 .table-data {
   background-color: var(--card-bg-color);
-  /* Ensure this variable is defined */
   width: 100%;
-  /* Set width to 100% for proper scaling */
   overflow-x: auto;
-  /* Allow horizontal scrolling if content overflows */
   overflow-y: hidden;
-  /* Hide vertical overflow */
   border-radius: 0.25rem;
-  /* Optional: add border radius for aesthetics */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  /* Optional: add shadow for depth */
-
-}
-
-
-.table-data thead {
-  border-radius: 0.25rem !important;
-  /* Optional: add border radius for aesthetics */
-
 }
 
 .table-data thead th {
   padding: 0.8rem;
   background-color: var(--border-color-dark);
-
 }
 
 .table-data tbody tr td {
   padding: 0.8rem;
-  // background-color:var(--border-color-dark) ;
-
 }
-
 
 .table {
   margin: 0;
-  /* Remove margin if the table should fit tightly */
 }
-
 
 .navbar-toggler {
   background-color: var(--button-bg-color);
-  /* Toggler background */
   border: none;
-  /* No border for toggler */
 }
 
 .navbar-toggler-icon {
   background-image: none;
-  /* Remove default background */
 }
 
 .navbar-brand {
   color: var(--header-color-light);
-  /* Brand color */
 }
 
 .navbar-nav .nav-link {
   color: var(--text-color);
-  /* Default text color for links */
 }
 
 .navbar-nav .nav-link:hover {
   color: var(--header-color-dark);
-  /* Change color on hover */
 }
 
-/* Style for cards */
 .card {
-  background-color: var(--card-bg-color) !important;
-  background-image: var(--card-gradient-light);
-  /* Default no gradient in light mode */
+  background-color: lightgrey !important;
   position: relative;
   transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
   border-bottom-right-radius: 3rem;
   border-top-left-radius: 3rem;
   border: none;
   padding: 20px;
-  /* Add padding to cards */
 }
 
-
-/* Dark mode card gradient shine effect */
 .dark-mode .card {
-  background-image: var(--card-gradient-dark);
-  /* Dark blue shining gradient in dark mode */
+  background-color: var(--card-bg-color) !important;
+}
+
+.dark-mode .navbar,
+.dark-mode #sidebar {
+  background-color: var(--card-bg-color) !important;
+}
+
+.dark-mode #sidebar {
+  border-bottom: 2px solid var(--border-color-dark);
 }
 
 /* Styles for login and signup forms */
 .form-container {
   max-width: 400px;
-  /* Limit form width */
   margin: 0 auto;
-  /* Center form on the page */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: var(--card-bg-color);
-  /* Background color based on mode */
 }
 
 .form-group {
   margin-bottom: 15px;
-  /* Space between form groups */
 }
 
 label {
   color: var(--text-color);
   display: block;
   margin-bottom: 5px;
-  /* Space between label and input */
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"] input[type="tel"] {
+input[type="password"] {
   width: 100%;
-  /* Full width inputs */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -256,36 +198,29 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
   border-color: var(--header-color-dark);
-  /* Change border color on focus */
 }
 
 .btn-submit {
   width: 100%;
-  /* Full width submit button */
 }
 
 /* Dark mode adjustments for the form */
 .dark-mode .form-container {
   background-color: #1a1a1a;
-  /* Darker background for dark mode */
 }
 
 .dark-mode input[type="text"],
 .dark-mode input[type="email"],
 .dark-mode input[type="password"] {
   background-color: #333;
-  /* Dark input background */
   color: white;
-  /* White text */
   border: 1px solid #666;
-  /* Darker border */
 }
 
 .dark-mode input[type="text"]:focus,
 .dark-mode input[type="email"]:focus,
 .dark-mode input[type="password"]:focus {
   border-color: var(--header-color-dark);
-  /* Focus color */
 }
 
 /* Responsive styles */
@@ -293,69 +228,50 @@ input[type="password"]:focus {
   #content {
     width: 100%;
     margin-top: 1.5rem !important;
-    /* Dark mode background */
   }
 
- 
-
   .table-data {
-
     overflow-x: auto !important;
     overflow-y: hidden;
-
-
   }
 
   .navbar-brand {
     color: var(--header-color-light);
-    /* Ensure brand color is visible */
   }
 }
 
 /* Dropdown menu styles */
 .dropdown-menu {
   background-color: var(--card-bg-color);
-  /* Background color for dropdown */
   border: none;
-  /* No border for dropdown */
 }
 
 .dropdown-item {
   color: var(--text-color);
-  /* Default text color for dropdown items */
 }
 
 .dropdown-item:hover {
   background-color: var(--header-color-dark);
-  /* Background color on hover */
   color: var(--header-color-light);
-  /* Text color on hover */
 }
-
 
 /* Wrapper for sidebar and content */
 .wrapper {
-
   display: flex;
   align-items: stretch;
   min-height: auto;
   overflow-y: auto;
-  
-  /* Space around content */
 }
 
-/* Sidebar styling */
 #sidebar {
-  width: 20rem;
+  position: fixed;
+  width: 15rem;
   margin-top: 6.2rem;
-  background: var(--card-bg-color);
+  background-color: lightgrey !important;
   color: var(--text-color);
   transition: all 0.3s;
-  position: fixed;
-  /* Fix sidebar */
   height: 100vh;
   z-index: 1;
-
 }
 
 #sidebar.active {
@@ -378,7 +294,6 @@ input[type="password"]:focus {
   font-size: 2rem;
 }
 
-
 #sidebar ul.components {
   padding: 20px 0;
   list-style: none;
@@ -404,18 +319,14 @@ input[type="password"]:focus {
   margin-right: 10px;
 }
 
-/* Page content styling */
 #content {
-  margin-top: 3rem;
-  margin-left: 10rem;
+  margin-left: 8rem;
+  margin-top: 4rem;
   flex-grow: 1;
   overflow-y: auto;
   height: auto;
   overflow: hidden;
-  width: 100%;
-  padding: 20px;
-  background: var(--background-color);
-  transition: all 0.3s;
+  margin-bottom: 1rem;
 }
 
 #sidebarCollapse {
@@ -426,84 +337,6 @@ input[type="password"]:focus {
   margin-left: 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-
-  #content {
-    margin-left: 0rem;
-  }
-
-  #sidebar.active {
-    margin-left: 0;
-  }
-
-  .sidebar-header strong {
-    display: inline-block;
-  }
-
-  .sidebar-header h3 {
-    display: none;
-  }
-}
-
-
-#sidebar.active {
-  margin-left: -25rem;
-}
-
-.sidebar-header {
-  padding: 20px;
-  background: var(--header-bg-color-light);
-  text-align: center;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  list-style: none;
-}
-
-#sidebar ul li {
-  padding: 10px;
-  font-size: 1.2rem;
-}
-
-#sidebar ul li a {
-  color: var(--text-color);
-  display: block;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-#sidebar ul li a:hover {
-  color: var(--header-color-dark);
-}
-
-#sidebar ul li a i {
-  margin-right: 10px;
-}
-
-// /* Page content styling */
-// #content {
-//   width: 100%;
-//   padding: 20px;
-//   background: var(--background-color);
-//   transition: all 0.3s;
-// }
-
-/* Sidebar collapse toggle button */
-#sidebarCollapse {
-  margin-bottom: 20px;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 
 /* Custom Toastr Styles */
 .toast {
@@ -518,19 +351,13 @@ body {
   /* Allows long words to wrap to the next line */
 }
 
-/* Optional: Customize toast appearance */
-.toast-success {
-  background-color: #28a745;
-  /* Success color */
-  color: white;
-  /* Text color */
-}
 
 .toast-error {
   background-color: #82020f;
-  /* Error color */
-  color: white;
-  /* Text color */
+  color: #fff !important;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px 20px;
 }
 
 /* Ensure the position remains fixed to top right */
@@ -543,8 +370,65 @@ body {
 
 /* Progress bar styles */
 .toast-progress {
-  height: 4px;
-  /* Height of the progress bar */
-  background-color: #007bff;
-  /* Color of the progress bar */
+  background-color: #fff !important;  /* Customize as needed */
+  height: 4px !important;  /* Adjust height if it's too small */
+}
+
+.toast-bottom-center {
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-width: 90%; /* Ensures it doesn’t exceed screen width */
+}
+
+/* Optional: Customize the look of the toastr */
+.toast-success {
+  background-color: #28a745 !important; /* Subtle green for success */
+  color: #fff !important;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.toast-close-button {
+  color: #fff !important;
+}
+/* Common styles for toastr notifications */
+.toast-custom {
+  display: flex;
+  align-items: center;
+  color: white !important;
+}
+
+/* Success Notification */
+.toast-custom.toast-success {
+  background-color: #28a745 !important;
+}
+.toast-custom.toast-success:before {
+  content: '\f058'; /* Check-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+/* Error Notification */
+.toast-custom.toast-error {
+  background-color: #dc3545 !important;
+}
+.toast-custom.toast-error:before {
+  content: '\f057'; /* Times-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+/* Info Notification */
+.toast-custom.toast-info {
+  background-color: #17a2b8 !important;
+}
+.toast-custom.toast-info:before {
+  content: '\f05a'; /* Info-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
 }

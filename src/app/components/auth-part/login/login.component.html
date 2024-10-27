@@ -1,19 +1,26 @@
 <div class="container-fluid">
     <div class="row align-items-center justify-content-between">
-        <div class="col-12 col-md-6 mb-3 mb-md-0 text-center text-md-start">
-            <img src="assets/logo.jpg" alt="logo" class="img-fluid" width="100">
-        </div>
-        <div class="col-12 col-md-3 text-center text-md-end">
-            <div class="float-md-end d-inline-block">
-                <span *ngIf="!isDarkMode" class="me-2">
-                    <i class="fa-solid fa-sun fs-1" (click)="toggleDarkMode(true)"></i>
-                </span>
-                <span *ngIf="isDarkMode">
-                    <i class="fa-regular fa-sun fs-1" (click)="toggleDarkMode(false)"></i>
-                </span>
+        <!-- Logo and Dark Mode Toggle Section (Flexible on Mobile) -->
+        <div class="col-12 d-flex justify-content-between align-items-center mb-3 mb-md-0">
+            <!-- Logo Section -->
+            <div class="text-center text-sm-start">
+                <img src="assets/logo.jpg" alt="logo" class="img-fluid" width="100">
+            </div>
+    
+            <!-- Dark Mode Toggle Section -->
+            <div class="text-center text-sm-end">
+                <div class="d-inline-block">
+                    <span *ngIf="!isDarkMode" class="me-2">
+                        <i class="fa-solid fa-sun fs-1" (click)="toggleDarkMode(true)"></i>
+                    </span>
+                    <span *ngIf="isDarkMode">
+                        <i class="fa-regular fa-sun fs-1" (click)="toggleDarkMode(false)"></i>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
+    
 
     <div class="row justify-content-center mt-4">
         <div class="col-12 col-sm-8 col-md-6 col-lg-4">

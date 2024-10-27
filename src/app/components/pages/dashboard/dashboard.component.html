@@ -2,202 +2,118 @@
     <!-- Page Content -->
     <div id="content">
         <div class="container">
-            <h2>Dashboard</h2>
-            <p>Your main content goes here</p>
+            <div class="d-flex justify-content-between mb-5">
+                <h2>Dashboard</h2>
+
+                <h3>Refferal code: <strong class="mx-1 text-success">{{refferalcode}}</strong></h3>
+
+            </div>
 
             <div class="row justify-content-center">
                 <!-- Card 1 -->
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Balance</h5>
+                <div class="col-md-3 mb-3">
+                    <div class="card ">
+                        
+                            <h3 class="card-title">Balance</h3>
                             <p class="card-text">{{userBlance}}</p>
-                        </div>
+                        
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Staked Balance</h5>
+                        
+                            <h3 class="card-title"> Staked Balance</h3>
                             <p class="card-text">{{totalStakedBalance}}</p>
-                        </div>
+                        
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Withdrawal Balance</h5>
+                        
+                            <h3 class="card-title"> Withdrawal Balance</h3>
                             <p class="card-text">{{totalWithdrawalBalance}}</p>
-                        </div>
+                       
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Team Turnover Balance</h5>
+                        
+                            <h3 class="card-title"> Team Turnover Balance</h3>
                             <p class="card-text">{{totalTeamTurnoverBalance}}</p>
-                        </div>
+                        
                     </div>
                 </div>
 
                 <!-- Card 5 -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Direct Team Turnover Balance</h5>
+                        
+                            <h3 class="card-title"> Direct Team Turnover Balance</h3>
                             <p class="card-text">{{totalDirectTeamTurnoverBalance}}</p>
-                        </div>
+                        
                     </div>
                 </div>
 
                 <!-- Card 6 -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Internal Transfer Balance</h5>
+                        
+                            <h3 class="card-title"> Internal Transfer Balance</h3>
                             <p class="card-text">{{totalInternalTransferBalance}}</p>
-                        </div>
+                       
                     </div>
                 </div>
                 <!-- Card 7 -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Unlock Reward Balance</h5>
+                        
+                            <h3 class="card-title"> Unlock Reward Balance</h3>
                             <p class="card-text">{{totalUnlockRewardBalnce}}</p>
-                        </div>
+                       
                     </div>
                 </div>
                 <!-- Card 8 -->
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Referral Reward Balance</h5>
+                        
+                            <h3 class="card-title"> Referral Reward Balance</h3>
                             <p class="card-text">{{totalReferralRewardBalance}}</p>
-                        </div>
+                        
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Reward Balance</h5>
+                        
+                            <h3 class="card-title"> Reward Balance</h3>
                             <p class="card-text">{{totalRewardBalance}}</p>
-                        </div>
+                        
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Reward Balance</h5>
+                        
+                            <h3 class="card-title"> Reward Balance</h3>
                             <p class="card-text">{{totalRewardBalance}}</p>
-                        </div>
+                        
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Avaliable Rewards</h5>
+                        
+                            <h3 class="card-title">Avaliable Rewards</h3>
                             <p class="card-text">{{avaliableRewards}}</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
 
-            <!-- Table Section
-            <h3>Data Table</h3>
-            <table class="table-data  mt-4">
-                <thead>
-                    <tr>
-                        <th>S.no</th>
-                        <th>Data Item 1</th>
-                        <th>Data Item 2</th>
-                        <th>Data Item 3</th>
-                        <th>Data Item 1</th>
-                        <th>Data Item 2</th>
-                        <th>Data Item 3</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Value 2A</td>
-                        <td>Value 2B</td>
-                        <td>Value 2C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Value 3A</td>
-                        <td>Value 3B</td>
-                        <td>Value 3C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Value 4A</td>
-                        <td>Value 4B</td>
-                        <td>Value 4C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Value 2A</td>
-                        <td>Value 2B</td>
-                        <td>Value 2C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Value 3A</td>
-                        <td>Value 3B</td>
-                        <td>Value 3C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Value 4A</td>
-                        <td>Value 4B</td>
-                        <td>Value 4C</td>
-                        <td>Value 1A</td>
-                        <td>Value 1B</td>
-                        <td>Value 1C</td>
-                    </tr>
-                </tbody>
-            </table> -->
+            
         </div>
     </div>
 </div>

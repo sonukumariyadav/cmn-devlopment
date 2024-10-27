@@ -4,32 +4,35 @@ import { LoginComponent } from './components/auth-part/login/login.component';
 import { SignUpComponent } from './components/auth-part/sign-up/sign-up.component';
 import { SideBarComponent } from './components/pages/side-bar/side-bar.component';
 import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
-import { AuthGuard } from './auth/auth.guard'; // Import the AuthGuard
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
-    path: "login",
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: "signup",
+    path: 'signup',
     component: SignUpComponent
   },
   {
     path: '',
     component: SideBarComponent,
     children: [
-      { path: "profile", component: ProfilePageComponent, canActivate: [AuthGuard] }, // Protecting the profile route
-      { path: 'dashboard', loadChildren: () => import('../app/components/pages/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [AuthGuard] }, // Protecting the dashboard route
-      { path: 'transaction', loadChildren: () => import('./components/pages/transaction/transaction.module').then(m => m.TransactionModule), canActivate: [AuthGuard] }, // Protecting the transaction route
-      { path: 'wallet', loadChildren: () => import('./components/pages/wallet/wallet.module').then(m => m.WalletModule), canActivate: [AuthGuard] }, // Protecting the wallet route
-      { path: 'setting', loadChildren: () => import('./components/pages/setting/setting.module').then(m => m.SettingModule) ,canActivate: [AuthGuard]  },
-      // Add other routes here and protect them as needed
+      { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard] },
+      { path: 'dashboard', loadChildren: () => import('./components/pages/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [AuthGuard] },
+      { path: 'transaction', loadChildren: () => import('./components/pages/transaction/transaction.module').then(m => m.TransactionModule), canActivate: [AuthGuard] },
+      { path: 'wallet', loadChildren: () => import('./components/pages/wallet/wallet.module').then(m => m.WalletModule), canActivate: [AuthGuard] },
+      { path: 'setting', loadChildren: () => import('./components/pages/setting/setting.module').then(m => m.SettingModule), canActivate: [AuthGuard] },
+      // Add other protected routes here
     ]
   },
-  
-  // Optionally, add a catch-all redirect
-  { path: '**', redirectTo: 'login' } // Redirect unknown routes to login
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({

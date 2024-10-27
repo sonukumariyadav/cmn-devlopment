@@ -22,7 +22,7 @@ export class DashboardComponent {
   totalReferralRewardBalance: any = 0
   totalRewardBalance: any = 0
   avaliableRewards: any = 0
-
+  refferalcode: any = ''
 
   constructor(private authService: AuthServicesService,
     private toastr: ToastrService) {
@@ -52,8 +52,11 @@ export class DashboardComponent {
         this.totalUnlockRewardBalnce = response.data.totalUnlockRewardBalnce
         this.totalReferralRewardBalance = response.data.totalReferralRewardBalance
         this.totalRewardBalance = response.data.totalRewardBalance
+        this.refferalcode = response.data.referralCode
         this.avaliableRewards = response.data.totalRewardBalance - this.totalUnlockRewardBalnce
-
+        localStorage.setItem('balance', this.avaliableRewards)
+        localStorage.setItem('isTrxPassCreated', response.data.isTrxPassCreated)
+        localStorage.setItem('isWalletAdded', response.data.isWalletAdded)
         this.loading = false;
       },
       error: (error) => {

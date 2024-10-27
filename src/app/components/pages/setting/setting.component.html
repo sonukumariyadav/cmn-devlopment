@@ -1,11 +1,9 @@
-<!-- wallet.component.html -->
-
 <div class="wrapper">
     <div id="content">
         <div class="container">
             <div class="row justify-content-center">
                 <!-- Create Transaction Password -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
+                <div class="card shadow-sm mt-5 col-12 col-md-6" >
                     <div class="card-header text-white">
                         <h2 class="card-title text-center mb-0">Create Transaction Password</h2>
                     </div>
@@ -57,7 +55,7 @@
 
             <div class="row justify-content-center">
                 <!-- Update Wallet Address -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
+                <div class="card shadow-sm mt-5 col-12 col-md-6" >
                     <div class="card-header text-white">
                         <h2 class="card-title text-center mb-0">Update Wallet Address</h2>
                     </div>
@@ -69,26 +67,6 @@
                             </div>
                             <button type="submit" class="btn btn-info btn-block" [disabled]="updateWalletAddressForm.invalid">
                                 Update Address
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <!-- Convert Wallet -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
-                    <div class="card-header text-white">
-                        <h2 class="card-title text-center mb-0">Convert Wallet</h2>
-                    </div>
-                    <div class="card-body">
-                        <form [formGroup]="convertWalletForm" (ngSubmit)="convertWallet()">
-                            <div class="form-group mb-3">
-                                <label for="amount">Conversion Amount:</label>
-                                <input type="number" id="amount" class="form-control" formControlName="amount" required />
-                            </div>
-                            <button type="submit" class="btn btn-success btn-block" [disabled]="convertWalletForm.invalid">
-                                Convert
                             </button>
                         </form>
                     </div>
