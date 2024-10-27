@@ -29,7 +29,6 @@ const routes: Routes = [
       { path: 'transaction', loadChildren: () => import('./components/pages/transaction/transaction.module').then(m => m.TransactionModule), canActivate: [AuthGuard] },
       { path: 'wallet', loadChildren: () => import('./components/pages/wallet/wallet.module').then(m => m.WalletModule), canActivate: [AuthGuard] },
       { path: 'setting', loadChildren: () => import('./components/pages/setting/setting.module').then(m => m.SettingModule), canActivate: [AuthGuard] },
-      // Add other protected routes here
     ]
   },
   { path: '**', redirectTo: 'login' }
