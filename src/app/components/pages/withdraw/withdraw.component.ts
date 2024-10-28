@@ -12,6 +12,7 @@ export class WithdrawComponent {
 
   withdrawForm: FormGroup;
   token: any;
+  showWithdrawPassword = false;
 
   constructor(
     private walletService: WalletServiceService,

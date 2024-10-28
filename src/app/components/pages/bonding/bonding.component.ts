@@ -36,7 +36,9 @@ export class BondingComponent {
       const stakeAmount = this.stakeForm.value; // Get the value from the form
       this.walletService.stake(stakeAmount, this.token).subscribe({
         next: (response:any) => {
-          this.toastr.success(response.message, '', {
+          console.log("response",response);
+          
+          this.toastr.success(response.body.message, '', {
             toastClass: 'toast-custom toast-success',
             positionClass: 'toast-bottom-center',
             closeButton: false,

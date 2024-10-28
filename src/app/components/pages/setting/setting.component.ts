@@ -19,7 +19,11 @@ export class SettingComponent implements OnInit {
   token: any;
   showCreateTransactionPassword: any ; // Flag for creating password form
   showUpdateWalletAddress: any ; // Flag for updating wallet address form
-
+  showPassword = false;
+  showConfirmPassword = false;
+  showPrevPassword = false;
+  showNewPassword = false;
+  showConfirmNewPassword = false;
   constructor(
     private settingServicesService: SettingServicesService,
     private fb: FormBuilder,
@@ -32,7 +36,7 @@ export class SettingComponent implements OnInit {
     });
 
     this.changeTransactionPasswordForm = this.fb.group({
-      prevPassword: ['', Validators.required],
+      oldPassword: ['', Validators.required],
       newPassword: ['', Validators.required],
       cnfPassword: ['', Validators.required]
     });
@@ -132,7 +136,7 @@ export class SettingComponent implements OnInit {
 
       this.settingServicesService.updateWalletAddressData(updateWalletAddress, this.token).subscribe({
         next: (response) => {
-          this.toastr.success(response.message, '', {
+          this.toastr.success(response.body.message, '', {
             toastClass: 'toast-custom toast-success',
             positionClass: 'toast-bottom-center',
             closeButton: false,

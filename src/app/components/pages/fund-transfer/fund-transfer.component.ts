@@ -11,6 +11,7 @@ import { WalletServiceService } from 'src/app/services/wallet/wallet-service.ser
 export class FundTransferComponent {
   fundTransferForm: FormGroup;
   token: any;
+  showPassword = false;
 
   constructor(
     private walletService: WalletServiceService,
@@ -39,6 +40,8 @@ export class FundTransferComponent {
 
       this.walletService.fundTransferData(depositFormData, this.token).subscribe({
         next: (response) => {
+      
+          
           this.toastr.success(response.message, '', {
             toastClass: 'toast-custom toast-success',
             positionClass: 'toast-bottom-center',

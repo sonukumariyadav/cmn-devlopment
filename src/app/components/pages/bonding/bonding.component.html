@@ -8,7 +8,7 @@
                 <!-- Staking Card -->
                 <div class="card shadow-sm mt-5 col-12 col-md-6">
                     <div class="card-header text-white">
-                        <h2 class="card-title text-center mb-0">Stake Balance</h2>
+                        <h2 class="card-title text-center mb-0">Bond</h2>
                     </div>
                     <div class="card-body">
                         <form [formGroup]="stakeForm" (ngSubmit)="stake()">
@@ -16,7 +16,7 @@
                                 <label for="stakeAmount">Amount to Stake:</label>
                                 <input type="number" id="stakeAmount" class="form-control" formControlName="amount" required />
                                 <div *ngIf="stakeForm.get('amount')?.invalid && (stakeForm.get('amount')?.touched || stakeForm.get('amount')?.dirty)" class="text-danger">
-                                    Amount is required and must be greater than 0.
+                                    Amount is required and must be greater than 100.    
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block" [disabled]="stakeForm.invalid">
