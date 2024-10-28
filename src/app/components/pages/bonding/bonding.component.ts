@@ -1,19 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import FormBuilder, FormGroup, and Validators
-import { WalletServiceService } from '../../../services/wallet/wallet-service.service'; // Import the service
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-@Component({
-  selector: 'app-wallet',
-  templateUrl: './wallet.component.html',
-  styleUrls: ['./wallet.component.scss']
-})
-export class WalletComponent implements OnInit {
-  // Declare form groups
-  stakeForm: FormGroup;
- 
+import { WalletServiceService } from 'src/app/services/wallet/wallet-service.service';
 
+@Component({
+  selector: 'app-bonding',
+  templateUrl: './bonding.component.html',
+  styleUrls: ['./bonding.component.scss']
+})
+export class BondingComponent {
+  stakeForm: FormGroup;
   token: any;
-  avilableBalance:any
 
   constructor(
     private walletService: WalletServiceService,
@@ -31,7 +28,7 @@ export class WalletComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = localStorage.getItem('authToken');
-    this.avilableBalance = localStorage.getItem('balance')
+   
   }
 
   stake() {
@@ -64,33 +61,4 @@ export class WalletComponent implements OnInit {
     }
   }
 
-
- 
-
-  convertWallet() {
-   
-      this.walletService.convertWalletFormData(this.token).subscribe({
-        next: (response) => {
-          this.toastr.success(response.message, '', {
-            toastClass: 'toast-custom toast-success',
-            positionClass: 'toast-bottom-center',
-            closeButton: false,
-            timeOut: 3000,
-            progressBar: true
-          });
-        },
-        error: (err) => {
-          const errorMessage = err.error?.message || 'Error validating referral code';
-        
-          this.toastr.error(errorMessage, '', {
-            toastClass: 'toast-custom toast-error',
-            positionClass: 'toast-bottom-center',
-            closeButton: false,
-            timeOut: 3000,
-            progressBar: true
-          });
-        }
-      });
-    
-  }
 }

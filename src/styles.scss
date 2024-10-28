@@ -319,6 +319,24 @@ input[type="password"]:focus {
   margin-right: 10px;
 }
 
+#sidebar .list-unstyled.components li {
+  padding: 10px 15px;  // Adjust as needed
+}
+
+#sidebar .list-unstyled.components li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;  // Adjust as needed
+ 
+}
+
+#sidebar .list-unstyled.components li span {
+  padding: 10px 15px; // Adjust as needed
+}
+#sidebar .list-unstyled.ps-4 li {
+  padding: 8px 15px;  // Adjust padding as needed for submenu items
+}
+
 #content {
   margin-left: 8rem;
   margin-top: 4rem;
@@ -431,4 +449,9 @@ input[type="password"]:focus {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   margin-right: 8px;
+}
+
+
+.cursor-pointer {
+  cursor: pointer;
 }

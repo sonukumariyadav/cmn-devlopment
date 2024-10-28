@@ -14,9 +14,7 @@ export class ProfilePageComponent implements OnInit {
   loading = false;
   isDarkMode: boolean = false;
   token: any;
-  referralTree: any[] = [];
-  pageSize: number = 10;
-  currentPage: number = 1;
+
 
   constructor(
     private fb: FormBuilder,
@@ -36,22 +34,9 @@ export class ProfilePageComponent implements OnInit {
     // Retrieve the token and profile info
     this.token = localStorage.getItem('authToken');
     this.getProfileInfo();
-    this.fetchReferralTree()
   }
 
-  fetchReferralTree(): void {
-    this.loading = true;
-    this.authService.getReferralTree(this.token).subscribe({
-      next: (response: any) => {
-        this.referralTree = response.data; // Adjust this according to actual API response
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Failed to fetch referral tree', err);
-        this.loading = false;
-      }
-    });
-  }
+  
 
   getProfileInfo(): void {
     this.loading = true;
@@ -96,10 +81,6 @@ updateProfile(): void {
   }
 }
 
-onPageChange(event: PageEvent): void {
-  this.currentPage = event.pageIndex + 1; // MatPaginator pageIndex starts from 0
-  this.pageSize = event.pageSize;
-  this.fetchReferralTree();
-}
+
 
 }

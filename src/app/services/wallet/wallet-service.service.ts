@@ -50,6 +50,22 @@ export class WalletServiceService {
       );
   }
 
+  fundTransferData(depositData: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': token,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    // Convert the object to URL-encoded format
+    const body = new URLSearchParams();
+    body.set('amount', depositData.amount);
+    body.set('referralCode', depositData.referralCode);
+    body.set('password', depositData.password);
+
+    return this.http.post(`${this.baseUrl}/user/wallet/transfer`, body.toString(), { headers });
+  }
+
+
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
     return throwError(error);
