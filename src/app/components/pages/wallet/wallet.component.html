@@ -3,30 +3,7 @@
 <div class="wrapper">
     <div id="content">
         <div class="container">
-           
-            <div class="row justify-content-center">
-                <!-- Staking Card -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
-                    <div class="card-header text-white">
-                        <h2 class="card-title text-center mb-0">Stake Balance</h2>
-                    </div>
-                    <div class="card-body">
-                        <form [formGroup]="stakeForm" (ngSubmit)="stake()">
-                            <div class="form-group mb-3">
-                                <label for="stakeAmount">Amount to Stake:</label>
-                                <input type="number" id="stakeAmount" class="form-control" formControlName="amount" required />
-                                <div *ngIf="stakeForm.get('amount')?.invalid && (stakeForm.get('amount')?.touched || stakeForm.get('amount')?.dirty)" class="text-danger">
-                                    Amount is required and must be greater than 0.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block" [disabled]="stakeForm.invalid">
-                                Stake
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
+        
 
             <div class="row justify-content-center">
                 <!-- Convert Wallet -->
@@ -36,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group mb-3">
-                            <h3 for="amount">Conversion Amount: {{avilableBalance}} </h3>
+                            <h3 for="amount">Avaliable Rewards: {{avilableBalance}} </h3>
                         </div>
                         <button type="button" class="btn btn-success btn-block" (click)="convertWallet()">
                             Convert
@@ -44,6 +21,47 @@
                     </div>
                 </div>
             </div>
+
+
+            <table  class="table-data mt-4">
+                <thead>
+                  <tr>
+                    <th>S.no</th>
+                    <th>Transaction Type</th>
+                    <th>Credited Amount</th>
+                    <th>Debited Amount</th>
+                    <th>Current Balance</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let transaction of transactions; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ transaction.transactionType }}</td>
+                    <td>
+                      <span *ngIf="transaction.amount > 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+                    </td>
+                    <td>{{ transaction.currentBalance }}</td>
+                    <td>{{ transaction.description }}</td>
+                    <td>{{ transaction.status }}</td>
+                    <td>{{ transaction.createdAt | date: 'medium' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        
+              <div *ngIf="!loading && transactions.length === 0">No transactions available.</div>
+        
+              <!-- Paginator -->
+              <mat-paginator class="pagination" [length]="totalTransactions"
+              [pageSize]="sizePerPage"
+              [pageSizeOptions]="[5, 10, 20]"
+              (page)="onPageChange($event)">>
+              </mat-paginator>
         </div>
     </div>
 </div>

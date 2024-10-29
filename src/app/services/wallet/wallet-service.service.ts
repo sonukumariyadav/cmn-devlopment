@@ -66,8 +66,19 @@ export class WalletServiceService {
   }
 
 
+  getWalletTransactions(page: number, sizePerPage: number, transactionType: string, token: string): Observable<any> {
+    const url = `${this.baseUrl}/user/wallet/?page=${page}&sizePerPage=${sizePerPage}&transactionType=${transactionType}`;
+    const headers = new HttpHeaders({
+      'Authorization': token
+    });
+
+    return this.http.get(url, { headers });
+  }
+
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
     return throwError(error);
   }
+
+  
 }

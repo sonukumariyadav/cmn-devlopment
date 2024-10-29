@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { WalletRoutingModule } from './wallet-routing.module';
 import { WalletComponent } from './wallet.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { WalletComponent } from './wallet.component';
     WalletRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
   ]
 })
 export class WalletModule { }

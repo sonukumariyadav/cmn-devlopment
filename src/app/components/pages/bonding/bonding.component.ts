@@ -45,6 +45,7 @@ export class BondingComponent {
             timeOut: 3000,
             progressBar: true
           });
+          this.stakeForm.reset()
           // Handle success notification here
         },
         error: (err) => {

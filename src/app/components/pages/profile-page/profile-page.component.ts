@@ -28,7 +28,7 @@ export class ProfilePageComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      referralCode: ['']
+   
     });
 
     // Retrieve the token and profile info
@@ -46,7 +46,6 @@ export class ProfilePageComponent implements OnInit {
           name: response.data.name,
           email: response.data.email,
           mobile: response.data.mobile,
-          referralCode: response.data.fromUser?.referralCode || ''
         });
         this.loading = false;
       },

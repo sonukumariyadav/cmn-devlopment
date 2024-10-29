@@ -79,7 +79,7 @@ export class SettingComponent implements OnInit {
 
       this.settingServicesService.createTransactionPasswordData(createTransactionPassword, this.token).subscribe({
         next: (response) => {
-          this.toastr.success(response.message, '', {
+          this.toastr.success(response.body.message, '', {
             toastClass: 'toast-custom toast-success',
             positionClass: 'toast-bottom-center',
             closeButton: false,

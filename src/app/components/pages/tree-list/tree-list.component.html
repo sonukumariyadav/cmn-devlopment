@@ -31,7 +31,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let referral of filteredReferrals">
-                                    <td>{{ referral?.referralCode }}</td>
+                                    <td>{{ referral?.date }}</td>
                                     <td>{{ referral?.referralCode }}</td>
                                     <td>{{ referral?.name }}</td>
                                     <td class="cursor-pointer " data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getReferralInfo(referral.referralCode)"> <i class="fas fa-eye" ></i></td>
@@ -68,7 +68,7 @@
                     <th>Name</th>
                     <th>Sponser</th>
                     <th>Total Team</th>
-                    <th>Staked Balance</th>
+                    <th>Bond Balance</th>
 
                 </tr>
             </thead>
