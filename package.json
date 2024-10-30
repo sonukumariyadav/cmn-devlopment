@@ -1,13 +1,19 @@
 {
   "name": "cml-user-pannel",
   "version": "0.0.0",
- "scripts": {
-  "ng": "ng",
-  "start": "ng serve",
-  "build": "ng build --configuration=staging",
-  "watch": "ng build --watch --configuration=development",
-  "test": "ng test"
-},
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --open",
+    "prebuild:demo": "rm -rf ../../demo_build/frontend/build",
+    "build:demo": "ng build --configuration=demo",
+    "postbuild:demo": "mv build ../../demo_build/frontend/",
+    "prebuild:prod": "rm -rf ../../prod_build/frontend/build",
+    "build:prod": "ng build --configuration=staging",
+    "postbuild:prod": "mv build ../../prod_build/frontend/",
+    "watch": "ng build --watch",
+    "test": "ng test"
+  },
+  "homepage": "https://instantswap.app/",  
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.12",
