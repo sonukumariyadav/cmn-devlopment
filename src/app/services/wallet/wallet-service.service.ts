@@ -41,8 +41,44 @@ export class WalletServiceService {
       );
   }
 
+  convertWalletFormData( token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', token);
+
+    return this.http.post(`${this.baseUrl}/user/wallet/convert`,{} ,{ headers })
+      .pipe(
+        catchError(this.handleError) // Handle error gracefully
+      );
+  }
+
+  fundTransferData(depositData: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': token,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    // Convert the object to URL-encoded format
+    const body = new URLSearchParams();
+    body.set('amount', depositData.amount);
+    body.set('referralCode', depositData.referralCode);
+    body.set('password', depositData.password);
+
+    return this.http.post(`${this.baseUrl}/user/wallet/transfer`, body.toString(), { headers });
+  }
+
+
+  getWalletTransactions(page: number, sizePerPage: number, transactionType: string, token: string): Observable<any> {
+    const url = `${this.baseUrl}/user/wallet/?page=${page}&sizePerPage=${sizePerPage}&transactionType=${transactionType}`;
+    const headers = new HttpHeaders({
+      'Authorization': token
+    });
+
+    return this.http.get(url, { headers });
+  }
+
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
     return throwError(error);
   }
+
+  
 }

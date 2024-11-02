@@ -1,5 +1,3 @@
-<!-- wallet.component.html -->
-
 <div class="wrapper">
     <div id="content">
         <div class="container">
@@ -13,11 +11,37 @@
                         <form [formGroup]="createTransactionPasswordForm" (ngSubmit)="createTransactionPassword()">
                             <div class="form-group mb-3">
                                 <label for="password">Password:</label>
-                                <input type="password" id="password" class="form-control" formControlName="password" required />
+                                <div class="input-group">
+                                    <input
+                                        [type]="showPassword ? 'text' : 'password'"
+                                        id="password"
+                                        class="form-control"
+                                        formControlName="password"
+                                        required
+                                    />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
+                                            <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="cnfPassword">Confirm Password:</label>
-                                <input type="password" id="cnfPassword" class="form-control" formControlName="cnfPassword" required />
+                                <div class="input-group">
+                                    <input
+                                        [type]="showConfirmPassword ? 'text' : 'password'"
+                                        id="cnfPassword"
+                                        class="form-control"
+                                        formControlName="cnfPassword"
+                                        required
+                                    />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" (click)="showConfirmPassword = !showConfirmPassword">
+                                            <i [class]="showConfirmPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block" [disabled]="createTransactionPasswordForm.invalid">
                                 Create Password
@@ -31,21 +55,60 @@
                 <!-- Change Transaction Password -->
                 <div class="card shadow-sm mt-5 col-12 col-md-6">
                     <div class="card-header text-white">
-                        <h2 class="card-title text-center mb-0">Change Transaction Password</h2>
+                        <h2 class="card-title text-center mb-0">Change Login Password</h2>
                     </div>
                     <div class="card-body">
                         <form [formGroup]="changeTransactionPasswordForm" (ngSubmit)="changeTransactionPassword()">
                             <div class="form-group mb-3">
                                 <label for="prevPassword">Previous Password:</label>
-                                <input type="password" id="prevPassword" class="form-control" formControlName="prevPassword" required />
+                                <div class="input-group">
+                                    <input
+                                        [type]="showPrevPassword ? 'text' : 'password'"
+                                        id="prevPassword"
+                                        class="form-control"
+                                        formControlName="oldPassword"
+                                        required
+                                    />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" (click)="showPrevPassword = !showPrevPassword">
+                                            <i [class]="showPrevPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="newPassword">New Password:</label>
-                                <input type="password" id="newPassword" class="form-control" formControlName="newPassword" required />
+                                <div class="input-group">
+                                    <input
+                                        [type]="showNewPassword ? 'text' : 'password'"
+                                        id="newPassword"
+                                        class="form-control"
+                                        formControlName="newPassword"
+                                        required
+                                    />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" (click)="showNewPassword = !showNewPassword">
+                                            <i [class]="showNewPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="cnfPassword">Confirm New Password:</label>
-                                <input type="password" id="cnfPassword" class="form-control" formControlName="cnfPassword" required />
+                                <div class="input-group">
+                                    <input
+                                        [type]="showConfirmNewPassword ? 'text' : 'password'"
+                                        id="cnfPassword"
+                                        class="form-control"
+                                        formControlName="cnfPassword"
+                                        required
+                                    />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary" (click)="showConfirmNewPassword = !showConfirmNewPassword">
+                                            <i [class]="showConfirmNewPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-warning btn-block" [disabled]="changeTransactionPasswordForm.invalid">
                                 Change Password
@@ -69,26 +132,6 @@
                             </div>
                             <button type="submit" class="btn btn-info btn-block" [disabled]="updateWalletAddressForm.invalid">
                                 Update Address
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <!-- Convert Wallet -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
-                    <div class="card-header text-white">
-                        <h2 class="card-title text-center mb-0">Convert Wallet</h2>
-                    </div>
-                    <div class="card-body">
-                        <form [formGroup]="convertWalletForm" (ngSubmit)="convertWallet()">
-                            <div class="form-group mb-3">
-                                <label for="amount">Conversion Amount:</label>
-                                <input type="number" id="amount" class="form-control" formControlName="amount" required />
-                            </div>
-                            <button type="submit" class="btn btn-success btn-block" [disabled]="convertWalletForm.invalid">
-                                Convert
                             </button>
                         </form>
                     </div>

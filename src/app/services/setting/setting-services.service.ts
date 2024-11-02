@@ -22,7 +22,7 @@ export class SettingServicesService {
   changeTransactionPasswordData(body: any,  token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
 
-    return this.http.put(`${this.baseUrl}/user/wallet/change/transaction/password`, body, { headers, observe: 'response' })
+    return this.http.put(`${this.baseUrl}/user/auth/change/password`, body, { headers, observe: 'response' })
       .pipe(
         catchError(this.handleError) // Handle error gracefully
       );
@@ -36,14 +36,7 @@ export class SettingServicesService {
       );
   }
 
-  convertWalletFormData(body: any,  token: string): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', token);
-
-    return this.http.post(`${this.baseUrl}/user/wallet/convert`, body, { headers, observe: 'response' })
-      .pipe(
-        catchError(this.handleError) // Handle error gracefully
-      );
-  }
+ 
 
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);

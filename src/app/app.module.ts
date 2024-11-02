@@ -11,12 +11,15 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 import { TransactionModule } from './components/pages/transaction/transaction.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { HomePageComponent } from './components/landing-page/home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
     ProfilePageComponent,
+    HomePageComponent,
   
     
   ],
@@ -25,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatPaginatorModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-center',

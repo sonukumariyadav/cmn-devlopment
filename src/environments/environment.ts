@@ -1,5 +1,5 @@
 // src/environments/environment.ts
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8080', // Local API URL
+    apiUrl: 'https://user.boostbullion.com', // Local API URL
 };

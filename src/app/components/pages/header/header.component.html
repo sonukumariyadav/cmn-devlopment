@@ -1,8 +1,12 @@
-<nav class="navbar navbar-expand-lg" [ngClass]="{' text-light': isDarkMode, 'text-dark': !isDarkMode}">
+<nav class="navbar navbar-expand-lg" [ngClass]="{' text-light': isDarkMode, 'text-dark': !isDarkMode}" style="color: var(--header-color-light);
+position: fixed;
+width: 100%;
+ z-index: 1;
+border-bottom: 2px solid rgb(185, 137, 5) !important;">
     <div class="container-fluid">
         <!-- Logo Section -->
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="assets/logo.jpg" alt="Logo" width="70" height="70" class="me-2">
+            <img src="assets/logo.png" alt="Logo" width="70" height="70" class="me-2">
            
         </a>
 
@@ -26,13 +30,13 @@
                 </li>
 
                 <!-- Dark Mode Toggle Button -->
-                <li class="nav-item ms-3">
+                <li class="nav-item ms-3 mt-3">
                     <div class="float-md-end d-inline-block mt-2 cursor-pointer">
                         <span *ngIf="!isDarkMode" class="me-2">
                             <i class="fa-solid fa-sun fs-2" (click)="toggleDarkMode(true)"></i>
                         </span>
                         <span *ngIf="isDarkMode">
-                            <i class="fa-regular fa-sun fs-2" (click)="toggleDarkMode(false)"></i>
+                            <i class="fa-regular fa-moon fs-2" (click)="toggleDarkMode(false)"></i>
                         </span>
                     </div>
                 </li>

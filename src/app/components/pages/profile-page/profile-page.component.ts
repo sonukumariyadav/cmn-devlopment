@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServicesService } from 'src/app/services/auth/auth-services.service';
 
@@ -14,6 +15,7 @@ export class ProfilePageComponent implements OnInit {
   isDarkMode: boolean = false;
   token: any;
 
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthServicesService,
@@ -26,13 +28,15 @@ export class ProfilePageComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      referralCode: ['']
+   
     });
 
     // Retrieve the token and profile info
     this.token = localStorage.getItem('authToken');
     this.getProfileInfo();
   }
+
+  
 
   getProfileInfo(): void {
     this.loading = true;
@@ -42,7 +46,6 @@ export class ProfilePageComponent implements OnInit {
           name: response.data.name,
           email: response.data.email,
           mobile: response.data.mobile,
-          referralCode: response.data.fromUser?.referralCode || ''
         });
         this.loading = false;
       },
@@ -76,5 +79,7 @@ updateProfile(): void {
     this.toastr.warning('Please fill out the form correctly', 'Warning');
   }
 }
+
+
 
 }

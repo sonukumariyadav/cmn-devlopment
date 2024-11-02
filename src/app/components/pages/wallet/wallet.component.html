@@ -3,80 +3,65 @@
 <div class="wrapper">
     <div id="content">
         <div class="container">
+        
+
             <div class="row justify-content-center">
-                <!-- Staking Card -->
+                <!-- Convert Wallet -->
                 <div class="card shadow-sm mt-5 col-12 col-md-6">
-                    <div class="card-header  text-white">
-                        <h2 class="card-title text-center mb-0">Deposit Balance</h2>
+                    <div class="card-header text-white">
+                        <h2 class="card-title text-center mb-0">Convert Wallet</h2>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="depositForm" (ngSubmit)="deposit()">
-                            <div class="form-group mb-3">
-                                <label for="stakeAmount">Amount to Stake:</label>
-                                <input type="number" id="stakeAmount" class="form-control" formControlName="amount" required />
-                                <div *ngIf="depositForm.get('stakeAmount')?.invalid && (depositForm.get('stakeAmount')?.touched || depositForm.get('stakeAmount')?.dirty)" class="text-danger">
-                                    Amount is required and must be greater than 0.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block" [disabled]="stakeForm.invalid">
-                                Stake
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Staking Card -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
-                    <div class="card-header  text-white">
-                        <h2 class="card-title text-center mb-0">Stake Balance</h2>
-                    </div>
-                    <div class="card-body">
-                        <form [formGroup]="stakeForm" (ngSubmit)="stake()">
-                            <div class="form-group mb-3">
-                                <label for="stakeAmount">Amount to Stake:</label>
-                                <input type="number" id="stakeAmount" class="form-control" formControlName="amount" required />
-                                <div *ngIf="stakeForm.get('stakeAmount')?.invalid && (stakeForm.get('stakeAmount')?.touched || stakeForm.get('stakeAmount')?.dirty)" class="text-danger">
-                                    Amount is required and must be greater than 0.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block" [disabled]="stakeForm.invalid">
-                                Stake
-                            </button>
-                        </form>
+                        <div class="form-group mb-3">
+                            <h3 for="amount">Avaliable Rewards: {{avilableBalance}} </h3>
+                        </div>
+                        <button type="button" class="btn btn-success btn-block" (click)="convertWallet()">
+                            Convert
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
-                <!-- Withdrawal Card -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
-                    <div class="card-header  text-white">
-                        <h2 class="card-title text-center mb-0">Withdraw USDT</h2>
-                    </div>
-                    <div class="card-body">
-                        <form [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
-                            <div class="form-group mb-3">
-                                <label for="withdrawAmount">Amount to Withdraw:</label>
-                                <input type="number" id="withdrawAmount" class="form-control" formControlName="amount" required />
-                                <div *ngIf="withdrawForm.get('withdrawAmount')?.invalid && (withdrawForm.get('withdrawAmount')?.touched || withdrawForm.get('withdrawAmount')?.dirty)" class="text-danger">
-                                    Amount is required and must be greater than 0.
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="withdrawPassword">Password:</label>
-                                <input type="password" id="withdrawPassword" class="form-control" formControlName="password" required />
-                                <div *ngIf="withdrawForm.get('withdrawPassword')?.invalid && (withdrawForm.get('withdrawPassword')?.touched || withdrawForm.get('withdrawPassword')?.dirty)" class="text-danger">
-                                    Password is required.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-danger btn-block" [disabled]="withdrawForm.invalid">
-                                Withdraw
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+            <table  class="table-data mt-4">
+                <thead>
+                  <tr>
+                    <th>S.no</th>
+                    <th>Transaction Type</th>
+                    <th>Credited Amount</th>
+                    <th>Debited Amount</th>
+                    <!-- <th>Current Balance</th> -->
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let transaction of transactions; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ transaction.transactionType }}</td>
+                    <td>
+                      <span *ngIf="transaction.amount > 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+                    </td>
+                    <!-- <td>{{ transaction.currentBalance }}</td> -->
+                    <td>{{ transaction.description }}</td>
+                    <td>{{ transaction.status }}</td>
+                    <td>{{ transaction.createdAt | date: 'medium' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        
+              <div *ngIf="!loading && transactions.length === 0">No transactions available.</div>
+        
+              <!-- Paginator -->
+              <mat-paginator class="pagination" [length]="totalTransactions"
+              [pageSize]="sizePerPage"
+              [pageSizeOptions]="[5, 10, 20]"
+              (page)="onPageChange($event)">>
+              </mat-paginator>
         </div>
     </div>
 </div>

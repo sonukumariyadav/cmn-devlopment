@@ -15,7 +15,10 @@ export class SignUpComponent {
   isOtpSent: boolean = false; // Track if OTP has been sent
   isDarkMode: boolean = false;  
   isPasswordVisible: boolean = false;  
-
+  referralName:any = '';
+  timer: number = 60;
+  resendEnabled: boolean = false;
+  interval: any;
   constructor(
     private fb: FormBuilder,
     private authServices: AuthServicesService,
@@ -44,6 +47,7 @@ export class SignUpComponent {
       document.documentElement.classList.add('dark-mode');
       this.isDarkMode = true;
     }
+    this.startTimer();
   }
 
   toggleDarkMode(data: boolean) {
@@ -58,6 +62,19 @@ export class SignUpComponent {
     }
   }
 
+  startTimer() {
+    this.resendEnabled = false;
+    this.timer = 60;
+    this.interval = setInterval(() => {
+      if (this.timer > 0) {
+        this.timer--;
+      } else {
+        this.resendEnabled = true;
+        clearInterval(this.interval);
+      }
+    }, 1000);
+  }
+
   togglePasswordVisibility(): void {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
@@ -65,58 +82,164 @@ export class SignUpComponent {
   onSubmit() {
     if (this.signUpForm.valid) {
       const userData = this.signUpForm.value;
-
+  
       this.authServices.signUp(userData).subscribe({
         next: (response: any) => {
-          this.toastr.success('Staked successfully!', 'Otp is sent successfully', {
-            progressBar: true,
-            closeButton: true,
-            toastClass: 'toast-success' // Custom class for success
+
+          this.referralName = response.data.email
+          this.toastr.success(response.message, '', {
+            toastClass: 'toast-custom toast-success',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
           });
           this.sendOtp(userData.mobile, userData.email); // Send OTP after successful signup
         },
+        
         error: (err) => {
-          this.toastr.error(err.error.message || 'Signup failed. Please try again.', 'Error', {
-            progressBar: true,
-            closeButton: true,
-            toastClass: 'toast-error' // Custom class for error
+          const errorMessage = err.error?.message || 'Something went wrong';
+          this.toastr.error(errorMessage, '', {
+            toastClass: 'toast-custom toast-error',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
           });
         }
       });
     } else {
-      this.toastr.error('Form is invalid', 'Error', {
-        progressBar: true,
-        closeButton: true,
-        toastClass: 'toast-error' // Custom class for error
+      this.toastr.error('Please fill out all required fields correctly.', '', {
+        toastClass: 'toast-custom toast-error',
+        positionClass: 'toast-bottom-center',
+        closeButton: false,
+        timeOut: 3000,
+        progressBar: true
       });
-      console.log('Form is invalid');
     }
   }
+  
 
   sendOtp(mobile: string, email: string) {
     this.authServices.sendEmailOtp(email, mobile).subscribe({
       next: (response) => {
+        this.startTimer();
         this.isOtpSent = true; // Set flag to true indicating OTP has been sent
-        this.toastr.success('OTP sent to your email and mobile.');
+        this.toastr.success(response.message, '', {
+          toastClass: 'toast-custom toast-success',
+          positionClass: 'toast-bottom-center',
+          closeButton: false,
+          timeOut: 3000,
+          progressBar: true
+        });
       },
       error: (err) => {
-        this.toastr.error('Failed to send OTP. Please try again.', err);
+        const errorMessage = err.error?.message || 'Something went wrong';
+        this.toastr.error(errorMessage, '', {
+          toastClass: 'toast-custom toast-error',
+          positionClass: 'toast-bottom-center',
+          closeButton: false,
+          timeOut: 3000,
+          progressBar: true
+        });
       }
     });
   }
 
-  verifyOtp() {
+  mobileVerifyOtp() {
     const otpValue = this.otpForm.value.otp;
     const mobile = this.signUpForm.value.mobile;
-    const email = this.signUpForm.value.email;
 
-    this.authServices.verifyOtp(mobile, email, otpValue).subscribe({
+    this.authServices.mobileVerifyOtp(mobile, otpValue).subscribe({
       next: (response) => {
-        this.toastr.success('OTP verified successfully.');
+        this.toastr.success(response.message, '', {
+          toastClass: 'toast-custom toast-success',
+          positionClass: 'toast-bottom-center',
+          closeButton: false,
+          timeOut: 3000,
+          progressBar: true
+        });
         this.router.navigate(['/login']); // Redirect to login page
       },
       error: (err) => {
-        this.toastr.error('OTP verification failed. Please try again.', err);
+        const errorMessage = err.error?.message || 'Something went wrong';
+        this.toastr.error(errorMessage, '', {
+          toastClass: 'toast-custom toast-error',
+          positionClass: 'toast-bottom-center',
+          closeButton: false,
+          timeOut: 3000,
+          progressBar: true
+        });
+        
+      }
+    });
+  }
+  emailVerifyOtp() {
+    const otpValue = this.otpForm.value.otp;
+    const email = this.signUpForm.value.email;
+
+    this.authServices.mobileVerifyOtp(email, otpValue).subscribe({
+      next: (response) => {
+        this.toastr.success(response.message, '', {
+          toastClass: 'toast-custom toast-success',
+          positionClass: 'toast-bottom-center',
+          closeButton: false,
+          timeOut: 3000,
+          progressBar: true
+        });
+        this.router.navigate(['/login']); // Redirect to login page
+      },
+      error: (err) => {
+        const errorMessage = err.error?.message || 'Something went wrong';
+        this.toastr.error(errorMessage, '', {
+          toastClass: 'toast-custom toast-error',
+          positionClass: 'toast-bottom-center',
+          closeButton: false,
+          timeOut: 3000,
+          progressBar: true
+        });
+        
+      }
+    });
+  }
+
+  checkReferralCode() {
+    
+    const referralCode = this.signUpForm.get('referral')?.value;
+    this.authServices.getReferralInfo(referralCode).subscribe({
+      next: (response: any) => {
+        if (response.status) {
+          this.referralName = response.data.email
+          this.toastr.success(response.message, '', {
+            toastClass: 'toast-custom toast-success',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+          // Handle success, e.g., display referral data or store it for further use
+        } else {
+          this.toastr.error(response.message, '', {
+            toastClass: 'toast-custom toast-error',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+          
+        }
+      },
+      error: (err) => {
+        const errorMessage = err.error?.message || 'Error validating referral code';
+        
+        this.toastr.error(errorMessage, '', {
+          toastClass: 'toast-custom toast-error',
+          positionClass: 'toast-bottom-center',
+          closeButton: false,
+          timeOut: 3000,
+          progressBar: true
+        });
+        
       }
     });
   }

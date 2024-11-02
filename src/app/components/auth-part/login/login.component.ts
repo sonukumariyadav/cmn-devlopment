@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           const token = response.data.token;
           if (token) {
             localStorage.setItem('authToken', token); // Save token to localStorage
-            this.toastr.success('Login successful!', '', {
+            this.toastr.success(response.message, '', {
               toastClass: 'toast-custom toast-success',
               positionClass: 'toast-bottom-center',
               closeButton: false,
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
             });
             this.router.navigate(['/dashboard']); // Navigate to the dashboard
           } else {
-            this.toastr.error('Login failed. Token not found.', '', {
+            this.toastr.error(response.message, '', {
               toastClass: 'toast-custom toast-error',
               positionClass: 'toast-bottom-center',
               closeButton: false,
@@ -80,7 +80,8 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (err) => {
-          this.toastr.error('Login failed. Please check your credentials.', '', {
+          const errorMessage = err.error?.message || 'Something went wrong';
+          this.toastr.error(errorMessage, '', {
             toastClass: 'toast-custom toast-error',
             positionClass: 'toast-bottom-center',
             closeButton: false,

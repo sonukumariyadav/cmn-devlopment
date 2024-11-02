@@ -1,117 +1,161 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import FormBuilder, FormGroup, and Validators
-import { SettingServicesService } from '../../../services/setting/setting-services.service'; // Import the service
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SettingServicesService } from '../../../services/setting/setting-services.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthServicesService } from 'src/app/services/auth/auth-services.service';
 
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.scss']
 })
-export class SettingComponent { 
+export class SettingComponent implements OnInit { 
 
- // Declare form groups
- updateWalletAddressForm: FormGroup;
- createTransactionPasswordForm: FormGroup;
- changeTransactionPasswordForm: FormGroup;
- convertWalletForm:FormGroup
- token: any;
+  // Declare form groups
+  updateWalletAddressForm: FormGroup;
+  createTransactionPasswordForm: FormGroup;
+  changeTransactionPasswordForm: FormGroup;
+  loading = false;
+  token: any;
+  showCreateTransactionPassword: any ; // Flag for creating password form
+  showUpdateWalletAddress: any ; // Flag for updating wallet address form
+  showPassword = false;
+  showConfirmPassword = false;
+  showPrevPassword = false;
+  showNewPassword = false;
+  showConfirmNewPassword = false;
+  constructor(
+    private settingServicesService: SettingServicesService,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private authService: AuthServicesService,
+  ) {
+    this.createTransactionPasswordForm = this.fb.group({
+      password: ['', Validators.required],
+      cnfPassword: ['', Validators.required]
+    });
 
- constructor(
-   private settingServicesService: SettingServicesService,
-   private fb: FormBuilder // Inject FormBuilder
- ) {
-  this.createTransactionPasswordForm = this.fb.group({
-    password: ['', Validators.required],
-    cnfPassword: ['', Validators.required]
-  });
+    this.changeTransactionPasswordForm = this.fb.group({
+      oldPassword: ['', Validators.required],
+      newPassword: ['', Validators.required],
+      cnfPassword: ['', Validators.required]
+    });
 
-  this.changeTransactionPasswordForm = this.fb.group({
-    prevPassword: ['', Validators.required],
-    newPassword: ['', Validators.required],
-    cnfPassword: ['', Validators.required]
-  });
+    this.updateWalletAddressForm = this.fb.group({
+      address: ['', Validators.required]
+    });
+  }
 
-  this.updateWalletAddressForm = this.fb.group({
-    address: ['', Validators.required]
-  });
+  ngOnInit(): void {
+    this.token = localStorage.getItem('authToken');
+    this.getProfileInfo()
+    
+  }
 
-  this.convertWalletForm = this.fb.group({
-    amount: [0, [Validators.required, Validators.min(1)]]
-  });
- }
-
- ngOnInit(): void {
-   this.token = localStorage.getItem('authToken');
- }
-
- 
-
- createTransactionPassword() {
-   if (this.createTransactionPasswordForm.valid) {
-     const createTransactionPassword = this.createTransactionPasswordForm.value; // Get the value from the form
-     // const withdrawPassword = this.withdrawForm.value.withdrawPassword; // Get the password from the form
-
-     this.settingServicesService.createTransactionPasswordData(createTransactionPassword, this.token).subscribe({
-       next: (response) => {
-         console.log('createTransactionPassword successfully:', response);
-         // Handle success notification here
-       },
-       error: (err) => {
-         console.error('createTransactionPassword error:', err);
-         // Handle error notification here
-       }
-     });
-   }
- }
- changeTransactionPassword() {
-   if (this.changeTransactionPasswordForm.valid) {
-     const changeTransactionPassword = this.changeTransactionPasswordForm.value; // Get the value from the form
-     // const withdrawPassword = this.withdrawForm.value.withdrawPassword; // Get the password from the form
-
-     this.settingServicesService.changeTransactionPasswordData(changeTransactionPassword, this.token).subscribe({
-       next: (response) => {
-         console.log('changeTransactionPassword successfully:', response);
-         // Handle success notification here
-       },
-       error: (err) => {
-         console.error('changeTransactionPassword error:', err);
-         // Handle error notification here
-       }
-     });
-   }
- }
-
- updateWalletAddress() {
-  if (this.updateWalletAddressForm.valid) {
-    const updateWalletAddress = this.updateWalletAddressForm.value; // Get the value from the form
-    this.settingServicesService.updateWalletAddressData(updateWalletAddress, this.token).subscribe({
+  
+  getProfileInfo(): void {
+    this.loading = true;
+    this.authService.getProfile(this.token).subscribe({
       next: (response) => {
-        console.log('updateWalletAddress successfully:', response);
-        // Handle success notification here
+        // Show Create Transaction Password form if isTrxPassCreated is false
+        this.showCreateTransactionPassword = response.data?.isTrxPassCreated === false;
+  
+        // Show Update Wallet Address form if isWalletAdded is false
+        this.showUpdateWalletAddress = response.data?.isWalletAdded === false;
+  
+        this.loading = false;
       },
-      error: (err) => {
-        console.error('updateWalletAddress error:', err);
-        // Handle error notification here
+      error: (error) => {
+        this.toastr.error('Failed to load profile information', 'Error');
+        this.loading = false;
       }
     });
   }
-}
- convertWallet() {
-   if (this.convertWalletForm.valid) {
-     const convertWallet = this.convertWalletForm.value; // Get the value from the form
-     // const withdrawPassword = this.withdrawForm.value.withdrawPassword; // Get the password from the form
+  
 
-     this.settingServicesService.convertWalletFormData(convertWallet, this.token).subscribe({
-       next: (response) => {
-         console.log('convertWallet successfully:', response);
-         // Handle success notification here
-       },
-       error: (err) => {
-         console.error('convertWallet error:', err);
-         // Handle error notification here
-       }
-     });
-   }
- }
-}
+  createTransactionPassword() {
+    if (this.createTransactionPasswordForm.valid) {
+      const createTransactionPassword = this.createTransactionPasswordForm.value;
 
+      this.settingServicesService.createTransactionPasswordData(createTransactionPassword, this.token).subscribe({
+        next: (response) => {
+          this.toastr.success(response.body.message, '', {
+            toastClass: 'toast-custom toast-success',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+          // Hide the form after successful creation
+        },
+        error: (err) => {
+          const errorMessage = err.error?.message || 'Error creating transaction password';
+          this.toastr.error(errorMessage, '', {
+            toastClass: 'toast-custom toast-error',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+        }
+      });
+    }
+  }
+
+  changeTransactionPassword() {
+    if (this.changeTransactionPasswordForm.valid) {
+      const changeTransactionPassword = this.changeTransactionPasswordForm.value;
+
+      this.settingServicesService.changeTransactionPasswordData(changeTransactionPassword, this.token).subscribe({
+        next: (response) => {
+          this.toastr.success(response.message, '', {
+            toastClass: 'toast-custom toast-success',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+        },
+        error: (err) => {
+          const errorMessage = err.error?.message || 'Error changing transaction password';
+          this.toastr.error(errorMessage, '', {
+            toastClass: 'toast-custom toast-error',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+        }
+      });
+    }
+  }
+
+  updateWalletAddress() {
+    if (this.updateWalletAddressForm.valid) {
+      const updateWalletAddress = this.updateWalletAddressForm.value;
+
+      this.settingServicesService.updateWalletAddressData(updateWalletAddress, this.token).subscribe({
+        next: (response) => {
+          this.toastr.success(response.body.message, '', {
+            toastClass: 'toast-custom toast-success',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+          this.showUpdateWalletAddress = false; // Hide the form after successful update
+        },
+        error: (err) => {
+          const errorMessage = err.error?.message || 'Error updating wallet address';
+          this.toastr.error(errorMessage, '', {
+            toastClass: 'toast-custom toast-error',
+            positionClass: 'toast-bottom-center',
+            closeButton: false,
+            timeOut: 3000,
+            progressBar: true
+          });
+        }
+      });
+    }
+  }
+}
