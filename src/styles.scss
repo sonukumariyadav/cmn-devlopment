@@ -4,13 +4,14 @@
   --text-color: black;
   --button-bg-color: #fff;
   --button-text-color: #000;
-  --card-bg-color: #fff;
+  --card-bg-color: #F2F8FE;
   --border-color-light: transparent;
   --card-gradient-light: none;
   --header-color-light: black;
   --header-bg-color-light: transparent;
-  --header-color-dark: rgb(150, 214, 241);
+  --header-color-dark: #F2F8FE;
   --header-bg-color-dark: transparent;
+  --border-color-dark: rgb(185, 137, 5);
 }
 
 /* Dark mode theme */
@@ -84,11 +85,9 @@ input button:hover {
 
 /* Header styling */
 .navbar {
-  background-color: lightgrey !important;
+  background-color: var(--card-bg-color);
   color: var(--header-color-light);
-  position: fixed;
-  width: 100%;
-  z-index: 1;
+  
   border-bottom: 2px solid yellow !important;
 }
 
@@ -140,11 +139,12 @@ input button:hover {
 }
 
 .card {
-  background-color: lightgrey !important;
+  background-color: var( --header-color-dark) ;
   position: relative;
   transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
-  border-bottom-right-radius: 3rem;
-  border-top-left-radius: 3rem;
+  // border-bottom-right-radius: 3rem;
+  // border-top-left-radius: 3rem;
+  border-radius: 1rem;
   border: none;
   padding: 20px;
 }
@@ -227,7 +227,8 @@ input[type="password"]:focus {
 @media (max-width: 768px) {
   #content {
     width: 100%;
-    margin-top: 1.5rem !important;
+    margin-top: 3.5rem !important;
+    margin-left: 0rem !important;
   }
 
   .table-data {
@@ -266,8 +267,8 @@ input[type="password"]:focus {
 #sidebar {
   position: fixed;
   width: 15rem;
-  margin-top: 6.2rem;
-  background-color: lightgrey !important;
+  margin-top: 6.4rem;
+  background-color: var(--card-bg-color);
   color: var(--text-color);
   transition: all 0.3s;
   height: 100vh;

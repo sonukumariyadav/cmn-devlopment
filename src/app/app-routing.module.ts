@@ -5,12 +5,17 @@ import { SignUpComponent } from './components/auth-part/sign-up/sign-up.componen
 import { SideBarComponent } from './components/pages/side-bar/side-bar.component';
 import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 import { AuthGuard } from './auth/auth.guard';
+import { HomePageComponent } from './components/landing-page/home-page/home-page.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    component: HomePageComponent
   },
   {
     path: 'login',

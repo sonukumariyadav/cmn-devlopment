@@ -12,12 +12,14 @@ import { ProfilePageComponent } from './components/pages/profile-page/profile-pa
 import { TransactionModule } from './components/pages/transaction/transaction.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HomePageComponent } from './components/landing-page/home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
     ProfilePageComponent,
+    HomePageComponent,
   
     
   ],

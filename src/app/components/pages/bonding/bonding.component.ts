@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { WalletServiceService } from 'src/app/services/wallet/wallet-service.service';
 
@@ -12,6 +13,12 @@ export class BondingComponent {
   stakeForm: FormGroup;
   token: any;
 
+  page = 1;
+  sizePerPage = 10;
+  transactionType = 'BOND-IN';
+  transactions: any = [];
+  totalTransactions: number = 0; 
+  loading = false;
   constructor(
     private walletService: WalletServiceService,
     private fb: FormBuilder, // Inject FormBuilder
@@ -28,7 +35,7 @@ export class BondingComponent {
 
   ngOnInit(): void {
     this.token = localStorage.getItem('authToken');
-   
+    this.fetchWalletTransactions(this.page, this.sizePerPage); // Refresh transactions after deposit
   }
 
   stake() {
@@ -45,6 +52,7 @@ export class BondingComponent {
             timeOut: 3000,
             progressBar: true
           });
+          this.fetchWalletTransactions(this.page, this.sizePerPage); // Refresh transactions after deposit
           this.stakeForm.reset()
           // Handle success notification here
         },
@@ -62,6 +70,27 @@ export class BondingComponent {
         }
       });
     }
+  }
+
+  fetchWalletTransactions(page: number, sizePerPage: number) {
+    if (this.token) {
+      this.walletService.getWalletTransactions(page, sizePerPage, this.transactionType, this.token).subscribe({
+        next: (response) => {
+          this.transactions = response.data.docs; // Adjust based on your response structure
+          this.totalTransactions = response.total; // Assuming your response contains the total transaction count
+          console.log(this.transactions);
+        },
+        error: (error) => {
+          console.error('Error fetching wallet transactions:', error);
+        }
+      });
+    }
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.page = event.pageIndex + 1; // MatPaginator pageIndex starts from 0
+    this.sizePerPage = event.pageSize;
+    this.fetchWalletTransactions(this.page, this.sizePerPage);
   }
 
 }

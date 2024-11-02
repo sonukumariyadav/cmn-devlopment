@@ -1,73 +1,75 @@
 <div class="wrapper">
-    <div id="content">
-        <div class="container">
-            <div class="row justify-content-center">
-                <!-- Staking Card -->
-                <div class="card shadow-sm mt-5 col-12 col-md-6">
-                    <div class="card-header text-white">
-                        <h2 class="card-title text-center mb-0">Deposit Balance</h2>
-                    </div>
-                    <div class="card-body">
-                        <form [formGroup]="depositForm" (ngSubmit)="deposit()">
-                            <div class="form-group mb-3">
-                                <label for="stakeAmount">Amount to Stake:</label>
-                                <input type="number" id="stakeAmount" class="form-control" formControlName="amount" required />
-                                <div *ngIf="depositForm.get('amount')?.invalid && (depositForm.get('amount')?.touched || depositForm.get('amount')?.dirty)" class="text-danger">
-                                    Amount is required and must be greater than 100.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block" [disabled]="depositForm.invalid">
-                                Stake
-                            </button>
-                        </form>
-                    </div>
+  <div id="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Staking Card -->
+        <div class="card shadow-sm mt-5 col-12 col-md-6">
+          <div class="card-header text-white">
+            <h2 class="card-title text-center mb-0">Deposit Balance</h2>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="depositForm" (ngSubmit)="deposit()">
+              <div class="form-group mb-3">
+                <label for="stakeAmount">Amount to Stake:</label>
+                <input type="number" id="stakeAmount" class="form-control" formControlName="amount" required />
+                <div
+                  *ngIf="depositForm.get('amount')?.invalid && (depositForm.get('amount')?.touched || depositForm.get('amount')?.dirty)"
+                  class="text-danger">
+                  Amount is required and must be greater than 100.
                 </div>
-            </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="depositForm.invalid">
+                Deposit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
 
-             <!-- Transactions Table -->
-      <table  class="table-data mt-4">
-        <thead>
-          <tr>
-            <th>S.no</th>
-            <th>Transaction Type</th>
-            <th>Credited Amount</th>
-            <th>Debited Amount</th>
-            <th>Current Balance</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let transaction of transactions; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ transaction.transactionType }}</td>
-            <td>
-              <span *ngIf="transaction.amount > 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
-            </td>
-            <td>
-              <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
-            </td>
-            <td>{{ transaction.currentBalance }}</td>
-            <td>{{ transaction.description }}</td>
-            <td>{{ transaction.status }}</td>
-            <td>{{ transaction.createdAt | date: 'medium' }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- Transactions Table -->
+      <div class="table-responsive">
+        <table class="table-data mt-4">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>Transaction Type</th>
+              <th>Credited Amount</th>
+              <th>Debited Amount</th>
+              <!-- <th>Current Balance</th> -->
+              <th>Description</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of transactions; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ transaction.transactionType }}</td>
+              <td>
+                <span *ngIf="transaction.amount > 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+              </td>
+              <td>
+                <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+              </td>
+              <!-- <td>{{ transaction.currentBalance }}</td> -->
+              <td>{{ transaction.description }}</td>
+              <td>{{ transaction.status }}</td>
+              <td>{{ transaction.createdAt | date: 'medium' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div *ngIf="!loading && transactions.length === 0">No transactions available.</div>
 
       <!-- Paginator -->
-      <mat-paginator class="pagination" [length]="totalTransactions"
-      [pageSize]="sizePerPage"
-      [pageSizeOptions]="[5, 10, 20]"
-      (page)="onPageChange($event)">>
+      <mat-paginator class="pagination" [length]="totalTransactions" [pageSize]="sizePerPage"
+        [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)">>
       </mat-paginator>
-        
 
 
-           
-        </div>
+
+
     </div>
+  </div>
 </div>

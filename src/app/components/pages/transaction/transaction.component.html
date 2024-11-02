@@ -15,7 +15,8 @@
         <div class="row">
           <div class="form-group col-md-4">
             <label for="transactionType">Transaction Type</label>
-            <select id="transactionType" class="form-control" [(ngModel)]="transactionType" (ngModelChange)="applyFilters()">
+            <select id="transactionType" class="form-control" [(ngModel)]="transactionType"
+              (ngModelChange)="applyFilters()">
               <option value="">All</option>
               <option value="FUND-TRANSFER">Fund Transfer</option>
               <option value="BOND-IN">Bond In</option>
@@ -32,46 +33,49 @@
               <!-- Add more options as needed -->
             </select>
           </div>
-          
+
         </div>
       </div>
 
       <!-- Transactions Table -->
-      <table  class="table-data mt-4">
-        <thead>
-          <tr>
-            <th>S.no</th>
-            <th>Transaction Type</th>
-            <th>Credited Amount</th>
-            <th>Debited Amount</th>
-            <th>Current Balance</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let transaction of transactions; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ transaction.transactionType }}</td>
-            <td>
-              <span *ngIf="transaction.amount > 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
-            </td>
-            <td>
-              <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
-            </td>
-            <td>{{ transaction.currentBalance }}</td>
-            <td>{{ transaction.description }}</td>
-            <td>{{ transaction.status }}</td>
-            <td>{{ transaction.createdAt | date: 'medium' }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table-data mt-4">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>Transaction Type</th>
+              <th>Credited Amount</th>
+              <th>Debited Amount</th>
+              <th>Current Balance</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of transactions; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ transaction.transactionType }}</td>
+              <td>
+                <span *ngIf="transaction.amount > 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+              </td>
+              <td>
+                <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
+              </td>
+              <td>{{ transaction.currentBalance }}</td>
+              <td>{{ transaction.description }}</td>
+              <td>{{ transaction.status }}</td>
+              <td>{{ transaction.createdAt | date: 'medium' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div *ngIf="!loading && transactions.length === 0">No transactions available.</div>
 
       <!-- Paginator -->
-      <mat-paginator class="pagination" [length]="totalTransactions" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)">
+      <mat-paginator class="pagination" [length]="totalTransactions" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"
+        (page)="onPageChange($event)">
       </mat-paginator>
     </div>
   </div>

@@ -30,7 +30,7 @@
                     <th>Transaction Type</th>
                     <th>Credited Amount</th>
                     <th>Debited Amount</th>
-                    <th>Current Balance</th>
+                    <!-- <th>Current Balance</th> -->
                     <th>Description</th>
                     <th>Status</th>
                     <th>Date</th>
@@ -46,7 +46,7 @@
                     <td>
                       <span *ngIf="transaction.amount < 0">{{ transaction.amount ? transaction.amount : '-' }}</span>
                     </td>
-                    <td>{{ transaction.currentBalance }}</td>
+                    <!-- <td>{{ transaction.currentBalance }}</td> -->
                     <td>{{ transaction.description }}</td>
                     <td>{{ transaction.status }}</td>
                     <td>{{ transaction.createdAt | date: 'medium' }}</td>

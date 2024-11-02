@@ -44,7 +44,7 @@ export class WalletServiceService {
   convertWalletFormData( token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
 
-    return this.http.post(`${this.baseUrl}/user/wallet/convert`, { headers, observe: 'response' })
+    return this.http.post(`${this.baseUrl}/user/wallet/convert`,{} ,{ headers })
       .pipe(
         catchError(this.handleError) // Handle error gracefully
       );
