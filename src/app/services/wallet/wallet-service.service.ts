@@ -35,7 +35,7 @@ export class WalletServiceService {
   deposit(body: any,  token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', token);
 
-    return this.http.post(`${this.baseUrl}/user/wallet/deposit`, body, { headers, observe: 'response' })
+    return this.http.post(`${this.baseUrl}/user/wallet/deposit/address`, body, { headers, observe: 'response' })
       .pipe(
         catchError(this.handleError) // Handle error gracefully
       );
