@@ -3,30 +3,39 @@
     <a routerLink="/" class="navbar-brand d-flex align-items-center">
         <img src="assets/logo.png" alt="Logo" width="70" height="70" class="me-2">
     </a>
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
+  
+
+    <button class="navbar-toggler btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <i class="fa-solid fa-bars"></i> <!-- Font Awesome Icon -->
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-4 py-lg-0">
             <a routerLink="/dashboard" class="nav-item nav-link active">Dashboard</a>
             <a href="#about" class="nav-item nav-link">About</a>
             <a href="#service" class="nav-item nav-link">Service</a>
-            <!-- <a href="#roadmap" class="nav-item nav-link">Roadmap</a> -->
-
-            <!-- <a href="#contact" class="nav-item nav-link">Contact</a> -->
+            <!-- <a href="#about" class="nav-item nav-link">About</a>
+            <a href="#service" class="nav-item nav-link">Service</a> -->
+           
         </div>
         <div class="h-100 d-lg-inline-flex align-items-center d-none">
             <a routerLink="/login" class="btn btn-success">Login</a>
-            <a routerLink="/signup" class="btn btn-primary mx-4">SignUp</a>
+            <!-- <a routerLink="/signup" class="btn btn-primary mx-4">SignUp</a> -->
 
+        </div>
+        <div class="nav-item ms-3">
+            <div class="float-md-end d-inline-block mt-2 cursor-pointer">
+                <span *ngIf="!isDarkMode" class="me-2">
+                    <i class="fa-solid fa-sun fs-2" (click)="toggleDarkMode(true)"></i>
+                </span>
+                <span *ngIf="isDarkMode">
+                    <i class="fa-regular fa-moon fs-2" (click)="toggleDarkMode(false)"></i>
+                </span>
+            </div>
         </div>
     </div>
 </nav>
-<!-- Navbar End -->
 
-
-<!-- Header Start -->
-<div class="container-fluid hero-header bg-light py-5 mb-5">
+<div class="container-fluid hero-header  py-5 mb-5">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
@@ -34,24 +43,71 @@
                 <p class="animated slideInDown">TSecure Your Future with Gold Investments" highlights the essential role
                     of gold in protecting wealth. With Boost Bullion, clients gain access to ethical gold trading,
                     ensuring a stable foundation for their financial future through trusted investment strategies.</p>
-                <a href="" class="btn btn-primary py-3 px-4 animated slideInDown">Explore More</a>
+                <a href="" class="btn  py-3 px-4 animated slideInDown">Explore More</a>
             </div>
             <div class="col-lg-6 animated fadeIn">
                 <img class="img-fluid animated pulse infinite" style="animation-duration: 3s;"
-                    src="assets/img/hero-1.png" alt="">
+                    src="assets/img/banner-img-1.png" alt="" width="500" height="500">
             </div>
         </div>
     </div>
 </div>
 <!-- Header End -->
 
-
+<!-- Service Start -->
+<div class="container-xxl  py-5 my-5" id="service">
+    <div class="container py-5">
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-6">What We Offer</h1>
+            <p class="text-primary fs-5 mb-5">At Boost Bullion, we pride ourselves on our wide array of services, which
+                include:</p>
+        </div>
+        <div class="row  justify-content-between align-items-center">
+            <div class="card col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item  p-5">
+                    <img class="img-fluid mb-4" src="assets/img/icon-1.png" alt="">
+                    <h5 class="mb-3">Gold Bullion Trading</h5>
+                    <p>We provide access to gold bars, coins, and other bullion products, helping clients diversify
+                        their portfolios and protect their wealth.</p>
+                    <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+            <div class="card col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item  p-5">
+                    <img class="img-fluid mb-4" src="assets/img/icon-2.png" alt="">
+                    <h5 class="mb-3">Gold Lending and Leasing Solutions</h5>
+                    <p>Offering innovative financial services, we allow clients to leverage their gold holdings for
+                        liquidity while earning returns through our lending options.</p>
+                    <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+            <div class="card col-lg-5 col-md-6 wow  mt-4 fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item  p-5">
+                    <img class="img-fluid mb-4" src="assets/img/icon-3.png" alt="">
+                    <h5 class="mb-3">Secure Storage and Custody</h5>
+                    <p>We offer safe, insured storage solutions for our clients’ bullion in top-tier vaults around the
+                        world, ensuring the highest levels of security.</p>
+                    <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+            <div class="card col-lg-5 col-md-6  mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item  p-5">
+                    <img class="img-fluid mb-4" src="assets/img/icon-4.png" alt="">
+                    <h5 class="mb-3">Consultation and Advisory Services</h5>
+                    <p>Our experienced team of experts provides personalized investment advice and strategic insights
+                        into the bullion market, enabling clients to make informed decisions.</p>
+                    <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- About Start -->
 <div class="container-xxl py-5" id="about">
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <img class="img-fluid" src="assets/img/about.png" alt="">
+                <img class="img-fluid" src="assets/img/mockup1-2.png" alt="" width="350" height="0">
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="h-100">
@@ -85,10 +141,10 @@
 
 
 <!-- Facts Start -->
-<div class="container-xxl bg-light py-5 my-5">
+<div class="container-xxl  py-5 my-5">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.1s">
+            <div class=" col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.1s">
                 <img class="img-fluid mb-4" src="assets/img/icon-9.png" alt="">
                 <h1 class="display-4" data-toggle="counter-up">123456</h1>
                 <p class="fs-5 text-primary mb-0">Today Transactions</p>
@@ -116,14 +172,15 @@
             <h1 class="display-6">Why Join Our Affiliate Program!</h1>
             <p class="text-primary fs-5 mb-5">Unlock Opportunities with Boost Bullion</p>
         </div>
-        <div class="row g-5">
+       <div class="card">
+        <div class=" row g-5">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="d-flex align-items-start">
                     <img class="img-fluid flex-shrink-0" src="assets/img/icon-1.png" alt="">
                     <div class="ps-4">
-                        <h5 class="mb-3">Competitive Commissions</h5>
-                        <span>Earn attractive commissions on every successful referral and investment made through your
-                            affiliate link.</span>
+                        <h3 class="mb-3">Competitive Commissions</h3>
+                        <p>Earn attractive commissions on every successful referral and investment made through your
+                            affiliate link.</p>
                     </div>
                 </div>
             </div>
@@ -131,9 +188,9 @@
                 <div class="d-flex align-items-start">
                     <img class="img-fluid flex-shrink-0" src="assets/img/icon-2.png" alt="">
                     <div class="ps-4">
-                        <h5 class="mb-3">Exclusive Marketing Materials</h5>
-                        <span>Gain access to a range of high-quality marketing materials, including banners, brochures,
-                            and educational content.</span>
+                        <h3 class="mb-3">Exclusive Marketing Materials</h3>
+                        <p>Gain access to a range of high-quality marketing materials, including banners, brochures,
+                            and educational content.</p>
                     </div>
                 </div>
             </div>
@@ -141,9 +198,9 @@
                 <div class="d-flex align-items-start">
                     <img class="img-fluid flex-shrink-0" src="assets/img/icon-3.png" alt="">
                     <div class="ps-4">
-                        <h5 class="mb-3">Training and Support</h5>
-                        <span>Receive comprehensive training on our products, sales techniques, and effective marketing
-                            strategies.</span>
+                        <h3 class="mb-3">Training and Support</h3>
+                        <p>Receive comprehensive training on our products, sales techniques, and effective marketing
+                            strategies.</p>
                     </div>
                 </div>
             </div>
@@ -151,9 +208,9 @@
                 <div class="d-flex align-items-start">
                     <img class="img-fluid flex-shrink-0" src="assets/img/icon-4.png" alt="">
                     <div class="ps-4">
-                        <h5 class="mb-3">Real-Time Tracking</h5>
-                        <span>Monitor your performance with our user-friendly dashboard that provides real-time tracking
-                            of clicks, conversions, and earnings.</span>
+                        <h3 class="mb-3">Real-Time Tracking</h3>
+                        <p>Monitor your performance with our user-friendly dashboard that provides real-time tracking
+                            of clicks, conversions, and earnings.</p>
                     </div>
                 </div>
             </div>
@@ -161,9 +218,9 @@
                 <div class="d-flex align-items-start">
                     <img class="img-fluid flex-shrink-0" src="assets/img/icon-5.png" alt="">
                     <div class="ps-4">
-                        <h5 class="mb-3">Access to Premium Investment Products</h5>
-                        <span>Promote our Gold Bonds, which offer competitive returns and a secure investment
-                            opportunity for clients.</span>
+                        <h3 class="mb-3">Access to Premium Investment Products</h3>
+                        <p>Promote our Gold Bonds, which offer competitive returns and a secure investment
+                            opportunity for clients.</p>
                     </div>
                 </div>
             </div>
@@ -171,13 +228,14 @@
                 <div class="d-flex align-items-start">
                     <img class="img-fluid flex-shrink-0" src="assets/img/icon-6.png" alt="">
                     <div class="ps-4">
-                        <h5 class="mb-3">Network and Community</h5>
-                        <span>Join a community of like-minded affiliates who share tips, strategies, and
-                            experiences.</span>
+                        <h3 class="mb-3">Network and Community</h3>
+                        <p>Join a community of like-minded affiliates who share tips, strategies, and
+                            experiences.</p>
                     </div>
                 </div>
             </div>
         </div>
+       </div>
     </div>
 </div>
 
@@ -186,16 +244,16 @@
 
 
 <!-- Service Start -->
-<div class="container-xxl bg-light py-5 my-5" id="service">
+<div class="container-xxl  py-5 my-5" id="service">
     <div class="container py-5">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <h1 class="display-6">What We Offer</h1>
             <p class="text-primary fs-5 mb-5">At Boost Bullion, we pride ourselves on our wide array of services, which
                 include:</p>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-item bg-white p-5">
+        <div class="row  justify-content-between align-items-center">
+            <div class="card col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item  p-5">
                     <img class="img-fluid mb-4" src="assets/img/icon-1.png" alt="">
                     <h5 class="mb-3">Gold Bullion Trading</h5>
                     <p>We provide access to gold bars, coins, and other bullion products, helping clients diversify
@@ -203,8 +261,8 @@
                     <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item bg-white p-5">
+            <div class="card col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item  p-5">
                     <img class="img-fluid mb-4" src="assets/img/icon-2.png" alt="">
                     <h5 class="mb-3">Gold Lending and Leasing Solutions</h5>
                     <p>Offering innovative financial services, we allow clients to leverage their gold holdings for
@@ -212,8 +270,8 @@
                     <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item bg-white p-5">
+            <div class="card col-lg-5 col-md-6 wow  mt-4 fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item  p-5">
                     <img class="img-fluid mb-4" src="assets/img/icon-3.png" alt="">
                     <h5 class="mb-3">Secure Storage and Custody</h5>
                     <p>We offer safe, insured storage solutions for our clients’ bullion in top-tier vaults around the
@@ -221,8 +279,8 @@
                     <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-item bg-white p-5">
+            <div class="card col-lg-5 col-md-6  mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item  p-5">
                     <img class="img-fluid mb-4" src="assets/img/icon-4.png" alt="">
                     <h5 class="mb-3">Consultation and Advisory Services</h5>
                     <p>Our experienced team of experts provides personalized investment advice and strategic insights
@@ -428,36 +486,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.7s">
-                        <h2 class="accordion-header" id="headingSeven">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                Will you maintain my site for me?
-                            </button>
-                        </h2>
-                        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
-                        <h2 class="accordion-header" id="headingEight">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                I’m on a strict budget. Do you have any low cost options?
-                            </button>
-                        </h2>
-                        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                            </div>
-                        </div>
-                    </div>
+                   
+
                 </div>
             </div>
         </div>
@@ -467,74 +497,69 @@
 
 
 <!-- Footer Start -->
-<div class="container-fluid bg-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+<div class="container-fluid footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-md-6">
-                <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="assets/logo.png" alt=""
-                        style="width: 45px;"></h1>
-                <span>DAt Boost Bullion Gold Trading Company, our mission is to empower investors with secure and
-                    transparent access to the global gold market, providing exceptional value through responsible
-                    sourcing, ethical trading, and innovative financial solutions. We strive to help our clients
-                    safeguard their wealth, diversify their portfolios, and achieve long-term financial stability by
-                    delivering the highest standards of integrity and service in the bullion industry.</span>
+            <!-- About Section -->
+            <div class="col-lg-4 col-md-6">
+                <h1 class="text-primary mb-4">
+                    <img class="img-fluid me-2" src="assets/logo.png" alt="Logo" style="width: 45px;">
+                    Boost Bullion
+                </h1>
+                <p>At Boost Bullion Gold Trading Company, we empower investors with secure and transparent access to the gold market, providing exceptional value through ethical trading and innovative financial solutions.</p>
             </div>
-            <div class="col-md-6">
+            <!-- Newsletter Section -->
+            <div class="col-lg-4 col-md-6">
                 <h5 class="mb-4">Newsletter</h5>
-                <p>Clita erat ipsum et lorem et sit, sed stet lorem sit clita.</p>
+                <p>Stay updated with our latest news and offerings.</p>
                 <div class="position-relative">
-                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
-                        placeholder="Your email">
-                    <button type="button"
-                        class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="email" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Sign Up</button>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <!-- Contact Info -->
+            <div class="col-lg-4 col-md-6">
                 <h5 class="mb-4">Get In Touch</h5>
                 <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
                 <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
                 <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
             </div>
+            <!-- Services -->
             <div class="col-lg-3 col-md-6">
                 <h5 class="mb-4">Our Services</h5>
-                <a class="btn btn-link" href="">Currency Wallet</a>
-                <a class="btn btn-link" href="">Currency Transaction</a>
-                <a class="btn btn-link" href="">Bitcoin Investment</a>
-                <a class="btn btn-link" href="">Token Sale</a>
+                <a href="" class="d-block mb-2">Currency Wallet</a>
+                <a href="" class="d-block mb-2">Currency Transaction</a>
+                <a href="" class="d-block mb-2">Bitcoin Investment</a>
+                <a href="" class="d-block mb-2">Token Sale</a>
             </div>
+            <!-- Quick Links -->
             <div class="col-lg-3 col-md-6">
                 <h5 class="mb-4">Quick Links</h5>
-                <a class="btn btn-link" href="">About Us</a>
-                <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Our Services</a>
-                <a class="btn btn-link" href="">Terms & Condition</a>
+                <a href="" class="d-block mb-2">About Us</a>
+                <a href="" class="d-block mb-2">Contact Us</a>
+                <a href="" class="d-block mb-2">Our Services</a>
+                <a href="" class="d-block mb-2">Terms & Conditions</a>
             </div>
+            <!-- Social Media -->
             <div class="col-lg-3 col-md-6">
                 <h5 class="mb-4">Follow Us</h5>
                 <div class="d-flex">
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a href="" class="btn btn-outline-primary rounded-circle me-1"><i class="fab fa-twitter"></i></a>
+                    <a href="" class="btn btn-outline-primary rounded-circle me-1"><i class="fab fa-facebook-f"></i></a>
+                    <a href="" class="btn btn-outline-primary rounded-circle me-1"><i class="fab fa-youtube"></i></a>
+                    <a href="" class="btn btn-outline-primary rounded-circle me-1"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </div>
     <div class="container-fluid copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a href="https://htmlcodex.com">HTML Codex</a> Distributed By <a
-                        href="https://themewagon.com">ThemeWagon</a>
-                </div>
-            </div>
+        <div class="container text-center">
+            <p>&copy; <a href="#">Your Site Name</a>, All Rights Reserved.</p>
+            <p>Designed by <a href="https://htmlcodex.com">HTML Codex</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
         </div>
     </div>
 </div>
+
 <!-- Footer End -->
 
 
